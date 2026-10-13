@@ -1,0 +1,1921 @@
+/* CWBridge console — Bloub desktop settings style. Local assets only. */
+
+/* Guided tasks retain the existing palette and separate page structure. */
+.dialog.workflow-dialog{width:100%;max-width:560px;max-height:calc(100dvh - 40px);display:flex;flex-direction:column}
+.workflow-dialog .dialog-body{overflow:auto;min-height:0;display:flex;flex-direction:column;gap:12px}
+.workflow-dialog .dialog-head,.workflow-dialog .dialog-actions{flex:none}
+.workflow-dialog .dialog-head .k-actions-trigger svg.lucide{color:var(--fg-muted)}
+.workflow-dialog .dialog-body p{margin:0}
+.workflow-dialog .dialog-body>p:empty,.workflow-dialog .dialog-body>div:empty,.workflow-dialog .dialog-body>pre:empty,.workflow-wizard-body>.error-text:empty{display:none}
+.workflow-dialog .stack>.btn{align-self:flex-start}
+.workflow-dialog .form-grid{gap:12px}
+.workflow-dialog .dialog-body>.form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.workflow-choice{min-width:0;width:100%}
+.workflow-output{white-space:pre-wrap;overflow-wrap:anywhere;max-height:240px;overflow:auto;font-size:13px;user-select:text;margin:0;padding:12px;background:var(--bg);border-radius:var(--radius-sm)}
+/* Add-domain progress */
+.wizard-steps{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0;list-style:none}
+.wizard-step{display:flex;align-items:center;gap:8px;font-size:var(--text-sm);color:var(--fg-subtle)}
+.wizard-step + .wizard-step::before{content:'';width:28px;height:1px;margin-right:2px;background:var(--border-strong)}
+.wizard-step-dot{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1px solid var(--border-strong);font-size:11px;font-weight:600;font-variant-numeric:tabular-nums}
+.wizard-step-dot svg.lucide{width:14px;height:14px}
+.wizard-step.is-current{color:var(--fg);font-weight:500}
+.wizard-step.is-current .wizard-step-dot{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 0 0 4px var(--accent-bg)}
+.wizard-step.is-done{color:var(--fg-muted)}
+.wizard-step.is-done .wizard-step-dot{border-color:var(--green-line);color:var(--green)}
+.wizard-step.is-done + .wizard-step::before{background:var(--green-line)}
+.workflow-notice > .wizard-steps{margin:0;flex-basis:100%}
+.workflow-notice{flex-wrap:wrap}
+.workflow-notice{padding:16px;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--bg-subtle);line-height:1.6;margin-bottom:16px}
+.workflow-filters{display:flex;gap:16px;flex-wrap:wrap;align-items:end}
+.workflow-filters>.field{flex:1 1 150px;min-width:0}
+.workflow-wizard-body{display:flex;flex-direction:column;gap:12px}
+.workflow-wizard-body p{margin:0}
+.workflow-wizard-actions{display:flex;justify-content:flex-end;gap:8px;padding:0 16px 16px}
+.service-settings-row.service-workflow{gap:10px}
+.service-workflow>.btn,.service-workflow>.k-actions{flex:none}
+.service-workflow .service-settings-link{padding-left:0}
+.overview-overall{padding:24px;display:flex;justify-content:space-between;align-items:center;gap:24px;border-left:3px solid var(--amber)}
+.overview-overall[data-ready="true"]{border-left-color:var(--green)}
+.overview-overall p{max-width:65ch;margin:8px 0 0}
+.overview-overall>.page-actions{flex:none}
+.request-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid var(--border)}
+.request-row:last-child{border-bottom:0}
+.request-row>.request-copy{flex:1 1 220px;min-width:0;overflow-wrap:anywhere;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.request-copy>.breadcrumb-link{text-align:left}
+.request-panel .panel-body>.stack{gap:0}
+.request-panel .panel-body>.stack>p{margin:0}
+.request-panel .workflow-filters{margin-bottom:12px}
+.request-panel>.panel-head{flex-wrap:wrap}
+.change-list{list-style:none;margin:0;padding:0;border:1px solid var(--border);border-radius:var(--radius-md);background:var(--well);overflow:hidden;overflow-wrap:anywhere}
+.change-list li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:var(--s-3);align-items:center;padding:9px var(--s-3);font-size:var(--text-sm)}
+.change-list li + li{border-top:1px solid var(--border)}
+.change-path{display:flex;flex-direction:column;gap:1px;min-width:0;font-size:var(--text-sm);color:var(--fg)}
+.change-path small{font-size:11px;color:var(--fg-subtle)}
+.change-old.is-empty,.change-new.is-empty{font-style:italic}
+.change-value{display:flex;align-items:center;flex-wrap:wrap;gap:6px;color:var(--fg)}
+.change-value svg.lucide{width:13px;height:13px;color:var(--fg-subtle);flex:none}
+.change-old{color:var(--fg-subtle);text-decoration:line-through;text-decoration-color:var(--red-line)}
+.change-new{color:var(--green-fg)}
+@media(max-width:600px){.change-list li{grid-template-columns:minmax(0,1fr)}}
+.search-results{max-height:50vh;overflow:auto}
+.transfer-picker{width:160px;max-width:100%}
+.notification-delivery{display:flex;flex-direction:column;gap:12px}
+.notification-delivery p{margin:0}
+.notification-delivery>.error-text:empty,.notification-delivery>.stack:empty{display:none}
+.dialog.command-dialog{width:460px;max-width:calc(100vw - 32px);max-height:calc(100dvh - 48px);overflow:hidden;background:var(--surface)}
+.command-dialog>.dialog-head,.command-dialog>.dialog-actions{display:none}
+.command-dialog>.dialog-body{padding:4px 4px 6px;margin:0}
+.command-input{display:block;width:100%;padding:8px 10px 6px;background:transparent;border:0;outline:none;box-shadow:none;color:var(--fg);font:inherit}
+.command-input:focus{outline:none;box-shadow:none}
+.command-results{max-height:min(430px,calc(100dvh - 130px));overflow:auto;padding:0 1px}
+.command-group{position:sticky;top:0;z-index:1;background:var(--surface);padding:8px 8px 4px;color:var(--fg-subtle);font-size:var(--text-xs)}
+.command-section:first-child .command-group{padding-top:2px}
+.command-row{display:flex;align-items:center;gap:10px;width:100%;min-height:28px;padding:5px 10px;border:0;border-radius:var(--radius-sm);background:transparent;color:var(--fg-muted);font:inherit;text-align:left;cursor:pointer}
+.command-row.active,.command-row:focus-visible{background:var(--surface-hover);color:var(--fg);outline:none}
+.command-row svg{width:16px;height:16px;flex:none}
+.command-row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.command-empty{padding:16px;color:var(--fg-subtle)}
+@media(max-width:600px){.overview-overall{align-items:flex-start;flex-direction:column;gap:16px;padding:20px}.workflow-dialog .dialog-actions{flex-wrap:wrap}.workflow-filters{align-items:stretch;flex-direction:column}.workflow-filters>.field{flex:auto}.request-row{gap:8px}.request-row>.request-copy{flex-basis:100%}.service-workflow>.btn span{display:none}.service-workflow>.btn{width:28px;padding:0}.workflow-dialog .dialog-body>.form-grid{grid-template-columns:minmax(0,1fr)}}
+
+#apply-notice[hidden]{display:none}
+#apply-notice{position:relative;padding:16px 52px 16px 16px;flex-wrap:wrap;margin-bottom:16px}
+#apply-notice>.apply-notice-close{position:absolute;top:8px;right:8px;min-height:36px;width:36px;padding:0}
+#apply-notice [data-apply-label]{flex:1 1 24rem;min-width:0;line-height:1.6}
+#apply-notice{--tone:var(--accent);--tone-bg:var(--accent-bg)}
+#apply-notice.is-stopped{--tone:var(--red);--tone-bg:var(--red-bg)}
+#apply-notice [data-apply-label]::before{content:'';display:inline-block;width:8px;height:8px;margin-right:10px;border-radius:50%;background:var(--tone);box-shadow:0 0 0 3px var(--tone-bg);vertical-align:1px}
+#apply-notice .apply-notice-actions{display:flex;align-items:center;gap:var(--s-2);flex:none}
+#apply-notice .apply-notice-actions>.btn{white-space:nowrap;height:auto;min-height:36px}
+@media(max-width:600px){
+  #apply-notice [data-apply-label]{flex-basis:100%}
+  #apply-notice .apply-notice-actions{flex:1 1 100%}
+  #apply-notice .apply-notice-actions>.btn{flex:1 1 0;justify-content:center}
+}
+#overview-readiness p{line-height:1.7}
+.dialog.diagnostics-dialog{max-width:760px;max-height:calc(100dvh - 40px);display:flex;flex-direction:column;overflow:hidden}
+.diagnostics-dialog .dialog-head,.diagnostics-dialog .dialog-actions{flex:none}
+.diagnostics-dialog .dialog-body{min-height:0;overflow-y:auto}
+.diagnostics-dialog .doctor-row{grid-template-columns:48px minmax(90px,130px) minmax(0,1fr);gap:12px;padding:14px;line-height:1.6}
+.diagnostics-dialog .doctor-name{color:var(--fg);font-weight:500}
+.diagnostics-dialog .doctor-detail{color:var(--fg-muted)}
+.diagnostics-list{display:flex;flex-direction:column;gap:16px}
+.diagnostics-list>p{margin:0;line-height:1.6}
+.diagnostics-summary{display:flex;align-items:center;gap:8px;padding:2px 0}
+.diagnostics-summary>.lucide{width:15px;height:15px}
+.diagnostics-summary h3{color:var(--fg);font-size:12px;font-weight:500;margin:0}
+.diagnostics-summary.needs-attention>.lucide{color:var(--amber)}
+.diagnostics-summary.all-clear>.lucide{color:var(--green)}
+.diagnostics-dialog .doctor-list{background:var(--bg)}
+.diagnostics-issues .doctor-row{background:var(--amber-bg)}
+.diagnostics-dialog .doctor-status{padding:3px 5px;border-radius:var(--radius-2xs);text-align:center;background:var(--surface);align-self:start;font-size:9px}
+.diagnostics-passed>summary{cursor:pointer;padding:4px 0 12px;font-size:12px;color:var(--fg-muted)}
+.diagnostics-passed>summary:hover{color:var(--fg)}
+.diagnostics-dialog .dialog-actions{flex-wrap:wrap}
+.diagnostics-actions{display:flex;gap:8px;flex-wrap:wrap;margin-right:auto}
+.diagnostics-dialog .doctor-name,.diagnostics-dialog .doctor-detail{min-width:0;overflow-wrap:anywhere}
+.dialog.storage-test-dialog{max-width:560px}
+.storage-test-dialog .doctor-row{grid-template-columns:44px minmax(0,1fr)}
+.storage-test-dialog .doctor-detail{grid-column:1 / -1}
+.not-found-page{min-height:100dvh;display:grid;place-items:center;padding:24px}
+.not-found-card{width:100%;max-width:520px;padding:32px;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--surface)}
+.not-found-card p{color:var(--fg-muted);margin:16px 0 24px;line-height:1.6}
+@media(max-width:600px){
+  .diagnostics-dialog .doctor-row{grid-template-columns:44px minmax(0,1fr)}
+  .diagnostics-dialog .doctor-detail{grid-column:1 / -1}
+}
+@media(max-width:700px){
+  .main .save-bar{position:static;flex-wrap:wrap;margin-top:16px}
+  .main .save-bar .save-bar-copy{flex-basis:100%}
+}
+
+/* ---- Geist fonts (local, offline) ------------------------------------ */
+@font-face{
+  font-family:'Geist';font-style:normal;font-weight:400;font-display:swap;
+  src:url('./fonts/Geist-Regular.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Geist';font-style:normal;font-weight:500;font-display:swap;
+  src:url('./fonts/Geist-Medium.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Geist';font-style:normal;font-weight:600;font-display:swap;
+  src:url('./fonts/Geist-SemiBold.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Geist Mono';font-style:normal;font-weight:400;font-display:swap;
+  src:url('./fonts/GeistMono-Regular.woff2') format('woff2');
+}
+
+/* ---- Bloub settings palette and compact desktop geometry --------------- */
+:root{
+  color-scheme:dark;
+  --bg:#181818;
+  --bg-subtle:#242424;
+  --sidebar:#212121;
+  --surface:#292929;
+  --surface-hover:#343434;
+  --border:#363636;
+  --border-strong:#555555;
+  --fg:#eeeeee;
+  --fg-muted:#aaaaaa;
+  --fg-subtle:#999999;
+  --fg-on-accent:#ffffff;
+  --blue:#2563eb;
+  --blue-hover:#1d4ed8;
+  --green:#10b981;
+  --amber:#f5b95c;
+  --red:#f08080;
+  --gray:#999999;
+  --focus-ring:0 0 0 2px #181818,0 0 0 4px var(--accent);
+
+  --radius-sm:10px;
+  --radius-md:12px;
+  --radius-lg:16px;
+  --radius-xs:8px;
+  /* Small marks: checkboxes, badges, status plates. */
+  --radius-2xs:4px;
+
+  /* One design, one set of tones: every tinted surface (dialog badge, callout,
+   * notice, chip, wizard step) mixes the same background and line from these,
+   * so blue means "information" and red means "destructive" everywhere. */
+  --accent:#7aaaff;
+  --accent-bg:rgba(37,99,235,.14);
+  --accent-line:rgba(122,170,255,.32);
+  --red-bg:rgba(240,128,128,.12);
+  --red-line:rgba(240,128,128,.42);
+  --danger-solid:#d9534f;
+  --danger-solid-hover:#c9403c;
+  --green-fg:#8fe3bf;
+  --green-bg:rgba(16,185,129,.12);
+  --green-line:rgba(16,185,129,.45);
+  --amber-bg:rgba(245,185,92,.08);
+  --amber-line:rgba(245,185,92,.4);
+
+  /* Raised layers — dialogs, menus, toasts, tooltips — share one surface,
+   * one hairline and one shadow scale. */
+  --border-subtle:rgba(255,255,255,.08);
+  --surface-active:#404040;
+  --surface-raised:linear-gradient(180deg,#2e2e2e 0,var(--surface) 120px);
+  --well:rgba(0,0,0,.18);
+  --shadow-sm:0 4px 16px rgba(0,0,0,.3);
+  --shadow-md:0 12px 32px rgba(0,0,0,.45);
+  --shadow-lg:0 1px 0 rgba(255,255,255,.05) inset,0 28px 72px rgba(0,0,0,.55),0 4px 16px rgba(0,0,0,.35);
+  --ease-out:cubic-bezier(.22,1,.36,1);
+
+  /* Height of the sticky save bar (box: 12px + button 36px + 12px + border).
+   * The layout reserves it as bottom padding so the last field of a form is
+   * never hidden behind the bar. */
+  --save-bar-h:61px;
+
+  /* Geist spacing scale */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px;
+  --s-6:24px; --s-8:32px; --s-10:40px; --s-12:48px;
+
+  /* Geist type scale */
+  --text-xs:11px; --text-sm:13px; --text-md:14px;
+  --text-lg:16px; --text-xl:20px; --text-2xl:24px; --text-3xl:32px;
+
+  --sans:'Segoe UI',-apple-system,BlinkMacSystemFont,'Geist',sans-serif;
+  --mono:'Geist Mono',ui-monospace,'Cascadia Mono','SF Mono',Menlo,Consolas,monospace;
+}
+
+/* ---- Base -------------------------------------------------------------- */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;background:var(--bg);color:var(--fg);
+  font-family:var(--sans);font-size:var(--text-md);line-height:1.5;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.015em}
+h1{font-size:var(--text-xl)}
+h2{font-size:var(--text-lg)}
+h3{font-size:var(--text-md)}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+svg.lucide{width:1em;height:1em;flex:none;vertical-align:-.12em;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+:focus-visible{outline:none;box-shadow:var(--focus-ring);border-radius:var(--radius-sm)}
+::selection{background:rgba(0,145,255,.4)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+/* Service rows navigate; their switches only enable/disable. The list is one
+ * compact block: the generic .stack gap is meant for panels and forms, not for
+ * full-width rows that already carry their own border. */
+.panel-body > .stack.service-list{gap:0;border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;background:var(--bg)}
+.service-settings-row{display:flex;align-items:center;gap:14px;padding:10px 16px;border-bottom:1px solid var(--border)}
+.service-settings-row:last-child{border-bottom:0}
+.service-settings-link{display:flex;align-items:center;gap:12px;flex:1;min-width:0;border:0;background:transparent;color:var(--fg);font:inherit;text-align:left;cursor:pointer;padding:var(--s-1) 6px;border-radius:var(--radius-sm)}
+.service-settings-row:hover{background:var(--bg-subtle)}
+.service-settings-link:hover{color:var(--fg)}
+/* Aligned columns, so the nine arrows line up instead of following the name's
+ * width. The name column keeps a fixed share and the label takes the rest. The
+ * .stack default of 16px is for panels; inside one row these two lines belong
+ * together — hence the named class, because .stack sits later in this file at
+ * the same specificity. */
+.service-settings-link .service-settings-copy{flex:1;gap:3px}
+.service-settings-link .name{overflow-wrap:anywhere;font-family:var(--sans);font-weight:500;font-size:13px}
+.service-settings-copy .hint{font-size:var(--text-xs);margin:0}
+.service-settings-go{flex:none;font-size:var(--text-xs);text-align:right}
+/* The services list sits flush in its panel: one frame, rows divided by
+ * lines. Each service carries its icon in the same tinted badge as a dialog;
+ * a service that is off is dimmed instead of marked by a side bar. */
+.service-list.is-flat{display:flex;flex-direction:column}
+.service-list.is-flat > .service-settings-row{padding:12px 16px}
+.service-list.is-flat > .service-settings-row:hover{background:var(--surface-hover)}
+.service-icon{display:grid;place-items:center;flex:none;width:20px;height:20px;color:var(--fg-subtle);transition:color .15s ease}
+.service-icon svg.lucide{width:18px;height:18px}
+.service-settings-row.is-on .service-icon{color:var(--accent)}
+.service-list.is-flat > .service-settings-row:not(.is-on) .service-settings-copy{opacity:.6}
+/* A saved state at a glance: green ready, grey off, amber when something is missing. */
+.status-badge{--tone:var(--fg-subtle);--tone-bg:var(--surface);--tone-line:var(--border);
+  flex:none;display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 9px;border-radius:999px;
+  background:var(--tone-bg);box-shadow:inset 0 0 0 1px var(--tone-line);color:var(--tone);font-size:var(--text-xs);font-weight:500;white-space:nowrap}
+.status-badge .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.about-update-badge{margin-left:10px;vertical-align:1px}
+.status-badge.ok{--tone:var(--green-fg);--tone-bg:var(--green-bg);--tone-line:var(--green-line)}
+.status-badge.warn{--tone:var(--amber);--tone-bg:var(--amber-bg);--tone-line:var(--amber-line)}
+.settings-highlight{outline:2px solid var(--blue);outline-offset:3px;animation:settings-arrival 1.8s ease-out}
+.settings-highlight,#settings-global-limits,#settings-backups{scroll-margin-block:90px}
+@keyframes settings-arrival{0%,25%{background-color:var(--surface-hover);box-shadow:0 0 0 4px var(--blue)}100%{background-color:transparent;box-shadow:none}}
+@media(prefers-reduced-motion:reduce){.settings-highlight{animation:none}}
+@media(max-width:480px){.service-settings-link{gap:8px;padding:6px 4px}.service-settings-go{display:none}.service-settings-link .status-badge{display:none}.service-icon{display:none}}
+
+/* Global capacity: upright stacked columns, empty capacity above usage. */
+#settings-global-limits{scroll-margin-top:90px}
+#settings-global-limits .chart-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+#settings-global-limits .chart-wrap{min-width:0;padding:16px;border:1px solid var(--border);border-radius:var(--radius-md);background:var(--bg-subtle)}
+#settings-global-limits .chart-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+#settings-global-limits .chart-wrap{display:flex;flex-direction:column}
+#settings-global-limits .meter{display:flex;flex-direction:column;gap:12px}
+#settings-global-limits .meter-stat{display:flex;align-items:baseline;gap:8px;min-height:34px}
+#settings-global-limits .meter-value{font-family:var(--mono);font-size:28px;font-weight:500;line-height:1;color:var(--fg);font-variant-numeric:tabular-nums}
+#settings-global-limits .meter-unit{font-size:var(--text-sm);color:var(--fg-muted)}
+#settings-global-limits .meter-stat .grow{flex:1}
+#settings-global-limits .meter-stat .status-badge{align-self:center}
+#settings-global-limits .meter-percent{font-family:var(--mono);font-size:var(--text-sm);color:var(--fg-muted)}
+#settings-global-limits .meter-percent.is-over,#settings-global-limits .meter-note.is-over{color:var(--red)}
+#settings-global-limits .chart-bar{display:flex;height:10px;border-radius:999px;overflow:hidden;background:var(--bg);box-shadow:inset 0 0 0 1px var(--border)}
+#settings-global-limits .chart-bar.is-uncapped,#settings-global-limits .chart-bar.is-empty{background:repeating-linear-gradient(90deg,var(--border) 0 6px,transparent 6px 12px);box-shadow:none;opacity:.6}
+#settings-global-limits .chart-segment{height:100%;min-width:0;cursor:help;transition:filter .15s ease}
+#settings-global-limits .chart-segment:hover,#settings-global-limits .chart-segment:focus-visible{filter:brightness(1.3);outline:none}
+#settings-global-limits .chart-note{font-size:12px;color:var(--fg-muted)}
+#settings-global-limits .meter-note{margin:0;font-size:12px}
+#settings-global-limits .chart-legend{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+#settings-global-limits .chart-legend li{display:flex;gap:8px;align-items:center;font-size:12px;overflow-wrap:anywhere}
+#settings-global-limits .chart-legend-value{margin-left:auto;font-family:var(--mono);color:var(--fg-muted)}
+#settings-global-limits .chart-swatch{width:9px;height:9px;border-radius:2px;flex:none}
+.dsh-tooltip{max-width:min(360px,calc(100vw - 16px));white-space:normal!important;overflow-wrap:anywhere}
+@media(max-width:600px){#settings-global-limits .chart-grid{grid-template-columns:1fr}}
+
+/* ---- Shell ------------------------------------------------------------- */
+.shell{min-height:100vh;display:flex}
+.sidebar{width:220px;flex:none;position:sticky;top:0;height:100vh;height:100dvh;display:flex;flex-direction:column;background:var(--sidebar);border-right:1px solid var(--border);transition:width .18s ease}
+.sidebar-head{display:flex;align-items:center;gap:6px;padding:24px 12px 22px}
+.sidebar-head .brand{margin-right:auto}
+.sidebar-icon-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  flex:0 0 28px;width:28px;height:28px;padding:0;border:0;border-radius:var(--radius-xs);
+  background:transparent;color:var(--fg-subtle);cursor:pointer;
+  transition:background .12s ease,color .12s ease,transform .12s ease;
+}
+.sidebar-icon-btn:hover{background:rgba(255,255,255,.06);color:var(--fg)}
+.sidebar-icon-btn svg.lucide{width:16px;height:16px;transform:rotate(90deg);transition:transform .18s ease}
+.sidebar-tooltip-trigger{position:relative}
+/* The layer is positioned by the script — as a transform, not as left/top, so
+ * it can travel from one control of a row to the next. Only the box travels:
+ * the label inside it is its own layer that is held at its destination and
+ * released in step with the box, so the writing never moves. */
+.dsh-tooltip{
+  position:fixed;left:0;top:0;z-index:120;padding:6px 10px;border:1px solid var(--border-subtle);border-radius:var(--radius-xs);
+  background:var(--surface);color:var(--fg);box-shadow:var(--shadow-sm);
+  font-family:var(--sans);font-size:12px;font-weight:400;line-height:1.5;white-space:nowrap;
+  visibility:hidden;opacity:0;pointer-events:auto;transform:translate3d(0,0,0);
+  transition:transform .19s cubic-bezier(.22,.61,.36,1),opacity .12s ease;
+}
+.dsh-tooltip.visible{visibility:visible;opacity:1}
+/* A box that is placed rather than moved keeps only the fade, so it is never
+ * seen flying in from the control that was hovered before. */
+.dsh-tooltip.no-anim{transition:opacity .12s ease}
+/* The label's own travel must run on the box's clock, or the two would not
+ * cancel out and the text would drift along with the surface. Its fade waits
+ * for the box to be most of the way there, so the word reads as arriving with
+ * the surface instead of hanging in the air ahead of it. */
+.dsh-tooltip-label{display:block;transition:transform .19s cubic-bezier(.22,.61,.36,1),opacity .12s ease .07s}
+.dsh-tooltip-label.no-anim{transition:none}
+@media (prefers-reduced-motion:reduce){
+  .dsh-tooltip{transition:opacity .12s ease}
+  .dsh-tooltip-label{transition:none}
+}
+@media (min-width:721px){
+  .sidebar{z-index:10}
+  .sidebar.is-collapsed{width:56px}
+  /* Folding only makes the rail narrower and drops the labels. Nothing inside
+   * may change its alignment: centring cannot be animated, so an icon would
+   * swing out to the middle of the still-wide rail and back. The head keeps the
+   * brand and the collapse button in one fixed 28px column instead of centring
+   * them in whatever width the rail happens to have. */
+  /* The head holds one 28px control: the logo, and the button that takes its
+   * place while the pointer is in the rail. In the rail that control IS the
+   * centre of the rail — like every icon below it — so its column is centred in
+   * the 56px instead of being pinned 4px left of it. */
+  .sidebar.is-collapsed .sidebar-head{display:grid;grid-template-columns:28px;padding-inline:0;justify-content:center;justify-items:center;gap:0}
+  .sidebar.is-collapsed .sidebar-head .brand,
+  .sidebar.is-collapsed .sidebar-icon-btn{grid-area:1 / 1;margin:0}
+  .sidebar.is-collapsed .brand{transition:opacity .12s ease}
+  .sidebar.is-collapsed .sidebar-icon-btn{opacity:0;z-index:1}
+  .sidebar.is-collapsed .sidebar-icon-btn svg.lucide{transform:rotate(-90deg)}
+  .sidebar.is-collapsed:is(:hover,:focus-within) .brand{opacity:0;pointer-events:none}
+  .sidebar.is-collapsed:is(:hover,:focus-within) .sidebar-icon-btn{opacity:1}
+  .sidebar.is-collapsed .brand-name,
+  .sidebar.is-collapsed .sidebar-label{display:none}
+  /* Folded, the rail is a column of icons and nothing else, so they have to be
+   * ONE column: the section rows carry an 18px indent that holds their labels
+   * under the section name in the open rail — with the labels gone it only
+   * pushed their icons 8px to the right of the tab icons above them (and off
+   * the centre of their own highlight). Every row centres its icon in the 39px
+   * the rail leaves it, and the dividers line up with them. */
+  .sidebar.is-collapsed .tab,
+  .sidebar.is-collapsed .section-back,
+  .sidebar.is-collapsed .section-item{padding:0 11px}
+  .sidebar.is-collapsed .section-divider{margin:8px 11px}
+}
+@media (hover:none) and (min-width:721px){
+  .sidebar.is-collapsed .brand{opacity:0;pointer-events:none}
+  .sidebar.is-collapsed .sidebar-icon-btn{opacity:1}
+}
+.sidebar-footer{margin-top:auto;padding:8px 10px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:12px}
+/* The one part of the rail that can grow: a section context adds a second
+ * level, so only the nav scrolls while head and footer stay put. */
+.sidebar-nav{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}
+/* Changing level inside the rail: the sub-pages of a context arrive from the
+ * side the step went, and the tab list comes back the way it went in. A plain
+ * repaint of the same level carries neither class and stays still. */
+@keyframes nav-swipe-forward{
+  from{opacity:0;transform:translateX(16px)}
+  to{opacity:1;transform:none}
+}
+@keyframes nav-swipe-back{
+  from{opacity:0;transform:translateX(-16px)}
+  to{opacity:1;transform:none}
+}
+.sidebar-nav.swipe-forward{animation:nav-swipe-forward .22s var(--digit-ease) both}
+.sidebar-nav.swipe-back{animation:nav-swipe-back .22s var(--digit-ease) both}
+/* Folding the rail: the width travels (it always could — the element is no
+ * longer replaced when it folds), and the labels arrive with the opening. */
+@keyframes rail-label-in{
+  from{opacity:0;transform:translateX(-6px)}
+  to{opacity:1;transform:none}
+}
+.sidebar.just-expanded .sidebar-label,
+.sidebar.just-expanded .brand-name{animation:rail-label-in .22s var(--digit-ease) both}
+@media (prefers-reduced-motion:reduce){
+  .sidebar-nav.swipe-forward,.sidebar-nav.swipe-back{animation:none}
+  .sidebar.just-expanded .sidebar-label,.sidebar.just-expanded .brand-name{animation:none}
+}
+.sidebar-footer .btn{justify-content:flex-start;height:28px;min-height:28px}
+.sidebar-connection{display:flex;align-items:center;gap:10px;padding:0 10px;color:var(--fg-subtle);font-size:12px}
+.sidebar-connection svg.lucide{width:15px;height:15px}
+
+/* ---- Section navigation (second level) --------------------------------- */
+.section-nav{display:flex;flex-direction:column;gap:2px;padding:0 8px 12px;min-width:0}
+.section-back{display:flex;align-items:center;gap:10px;min-height:34px;padding:0 10px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--fg-muted);font:inherit;font-size:var(--text-sm);font-weight:500;cursor:pointer;text-align:left}
+.section-back:hover{background:rgba(255,255,255,.04);color:var(--fg)}
+.section-back svg.lucide{width:16px;height:16px;flex:none}
+/* Sentence case, like every other label in the console: the context name is
+ * written normally, not shouted. */
+.section-eyebrow{margin:14px 0 6px;padding:0 10px;font-size:var(--text-sm);font-weight:600;color:var(--fg);overflow-wrap:anywhere}
+.section-list{display:flex;flex-direction:column;gap:2px}
+.section-item{
+  display:flex;align-items:center;gap:10px;min-height:32px;padding:0 10px 0 18px;width:100%;
+  border:0;border-radius:var(--radius-md);background:transparent;color:var(--fg-muted);
+  font-family:inherit;font-size:var(--text-sm);font-weight:500;text-align:left;cursor:pointer;
+  white-space:nowrap;transition:background .12s ease,color .12s ease;
+}
+.section-item svg.lucide{width:16px;height:16px;flex:none;opacity:.85}
+.section-item:hover{background:rgba(255,255,255,.04);color:var(--fg)}
+.section-item[aria-current="true"]{background:var(--surface-hover);color:var(--fg)}
+.section-item .sidebar-label{overflow:hidden;text-overflow:ellipsis}
+.section-item-note{flex:none;color:var(--amber);font-size:9px;line-height:1}
+.section-divider{height:1px;margin:8px 10px 8px 18px;background:var(--border)}
+.section-item[data-section="danger"]{margin-top:8px}
+.sidebar.is-collapsed .section-item-note{display:none}
+.workspace{flex:1;min-width:0}
+.topbar{
+  position:sticky;top:0;z-index:5;background:var(--bg);
+  height:48px;display:flex;align-items:center;gap:var(--s-4);
+  padding:0 30px;border-bottom:1px solid rgba(255,255,255,.04);
+}
+.breadcrumb{min-width:0;font-size:12px;color:var(--fg-subtle);overflow-wrap:anywhere}
+.breadcrumb-link{padding:0;border:0;background:none;font:inherit;color:inherit;cursor:pointer}
+.breadcrumb-link:hover{color:var(--fg);text-decoration:underline}
+.breadcrumb-link:focus-visible{outline:none;box-shadow:var(--focus-ring);border-radius:var(--radius-xs)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:-.01em;white-space:nowrap}
+.brand .logo{
+  width:26px;height:26px;border-radius:var(--radius-xs);background:var(--surface-hover);
+  display:grid;place-items:center;color:var(--fg);flex:none;
+}
+.brand .logo svg.lucide{width:16px;height:16px;stroke-width:1.75;vertical-align:baseline}
+.tabs{display:flex;flex-direction:column;gap:3px;padding:0 8px;min-width:0}
+.tab{
+  display:flex;align-items:center;gap:10px;text-align:left;font-family:inherit;
+  min-height:36px;padding:0 10px;border-radius:var(--radius-md);
+  color:var(--fg-muted);font-size:var(--text-sm);font-weight:500;
+  border:none;background:none;cursor:pointer;white-space:nowrap;
+  transition:background .12s ease,color .12s ease;
+}
+.tab svg.lucide{width:17px;height:17px}
+.tab:hover{background:rgba(255,255,255,.04);color:var(--fg)}
+.tab[aria-selected="true"]{background:var(--surface-hover);color:var(--fg)}
+
+/* ---- Sticky hover pill (sidebar lists, custom select menus) ------------- */
+/* One highlight that travels with the pointer instead of every row fading its
+ * own background in and out. The list is the positioning context (a custom
+ * select menu already is one), the rows stack above the pill so their own
+ * selected state still wins, and a row only gives up its own hover surface
+ * while the pill is actually standing in for it (is-hovering is set by the
+ * script — without it, hover is unchanged). The pill takes its look from the
+ * list it lives in, so a menu can ask for its own surface colour. */
+.tabs,.section-list{position:relative}
+.k-select-menu{--pill-bg:var(--surface-active);--pill-radius:10px}
+/* The menu's rows sit one level deeper than the others (inside the scroller
+ * that keeps the scrollbar off the rounded corners), so they are named as
+ * descendants rather than as children. */
+.tabs>.tab,.section-list>.section-item,.k-select-menu .k-option{position:relative;z-index:1}
+.is-hovering .tab:hover,
+.is-hovering .section-item:hover,
+/* Both the hover and the focus surface step aside: with the pill on its way,
+ * either one would paint a second highlight next to the travelling one.
+ *
+ * The rows of a menu carry one hover rule between them (`.k-option:hover`), and
+ * it is written without the menu around it, so this suppression is written for
+ * every menu at once — a select menu and a menu of actions are the same list.
+ * It only has to beat that one rule, which is why it is not deeper than this. */
+.is-hovering .k-option:hover,
+.is-hovering .k-option:focus-visible{background:transparent}
+.nav-hover-pill{
+  position:absolute;left:0;top:0;z-index:0;width:0;height:0;pointer-events:none;
+  border-radius:var(--pill-radius,var(--radius-md));background:var(--pill-bg,rgba(255,255,255,.04));opacity:0;
+  transition:transform .19s cubic-bezier(.22,.61,.36,1),width .19s cubic-bezier(.22,.61,.36,1),
+    height .19s cubic-bezier(.22,.61,.36,1),opacity .12s ease;
+}
+.nav-hover-pill.visible{opacity:1}
+/* Snapping (first appearance, a rebuilt list, a jump to the other list): only
+ * the fade is kept, so the pill is never seen travelling from a row it never
+ * hovered. */
+.nav-hover-pill.no-anim{transition:opacity .12s ease}
+@media (prefers-reduced-motion:reduce){
+  .nav-hover-pill{transition:opacity .12s ease}
+}
+.top-actions{display:flex;flex-shrink:0;align-items:center;gap:var(--s-2);margin-left:auto;white-space:nowrap}
+.topbar-menu{
+  display:none;align-items:center;justify-content:center;flex:none;
+  width:32px;height:32px;padding:0;border:1px solid var(--border);border-radius:var(--radius-md);
+  background:var(--surface);color:var(--fg);cursor:pointer;
+  transition:background .12s ease,border-color .12s ease,transform .12s ease;
+}
+.topbar-menu svg.lucide{width:16px;height:16px}
+.topbar-menu:hover{background:var(--surface-hover);border-color:var(--border-strong)}
+
+/* ---- Sticky save bar (every settings sub-page) -------------------------- */
+/* The draft is shared across Settings sub-pages, so the save action travels
+ * with the page instead of sitting once at the end of a long scroll. */
+.save-bar{
+  position:fixed;left:220px;right:0;bottom:0;z-index:6;
+  display:flex;align-items:center;gap:var(--s-4);flex-wrap:nowrap;
+  padding:12px max(30px,calc((100% - 220px - 880px)/2 + 30px));
+  background:var(--bg);border-top:1px solid var(--border);
+  /* Follows the rail when it folds, instead of jumping out from under it. */
+  transition:left .18s ease,padding .18s ease;
+}
+.save-bar.is-dirty{border-top-color:var(--blue)}
+.save-bar-copy{display:flex;flex:1;flex-direction:column;gap:2px;min-width:0}
+.save-bar>.grow{display:none}
+.save-bar-copy strong{font-size:var(--text-sm)}
+.save-bar-copy .hint{font-size:var(--text-xs)}
+.save-bar .btn{flex:none}
+.save-bar #settings-save:disabled,
+.save-bar:not(.is-dirty) #settings-save-actions{
+  background:var(--surface-hover);border-color:var(--border);color:var(--fg-subtle);opacity:1;
+}
+/* The rail width and the shell's left inset have to agree; one class per state
+ * makes that a single decision instead of two drifting values. */
+.shell.rail-collapsed .save-bar{left:56px}
+
+.status-pill{
+  flex-shrink:0;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:var(--s-2);height:28px;
+  padding:0 10px;border-radius:999px;border:1px solid var(--border);
+  font-size:var(--text-xs);font-weight:500;color:var(--fg-muted);background:var(--surface);
+}
+.status-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--gray);flex:none}
+.status-pill.running .dot{background:var(--green);animation:pulse 2.4s ease-in-out infinite}
+.status-pill.running{color:var(--fg)}
+.status-pill.stopped .dot{background:var(--red)}
+.status-pill.pid{font-family:var(--mono);letter-spacing:0;padding-right:6px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+
+/* ---- Layout ------------------------------------------------------------ */
+/* The save bar is fixed to the viewport, so the page reserves its height as
+ * bottom padding: without it the bar covers the last field of every Settings
+ * sub-page. The class comes from the shell, which knows the section saves a
+ * draft. */
+.main{width:100%;max-width:880px;min-width:0;margin:0 auto;padding:32px 30px 48px}
+.main.has-save-bar{padding-bottom:calc(var(--save-bar-h) + var(--s-5))}
+.main:focus{outline:none;box-shadow:none}
+.main h1{font-size:23px;font-weight:500;letter-spacing:-.015em}
+.main > .stack{gap:28px}
+.page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s-4);margin-bottom:var(--s-5);flex-wrap:wrap}
+.page-head .titles{min-width:0}
+.page-head p{margin:var(--s-1) 0 0;color:var(--fg-muted);font-size:var(--text-sm)}
+.page-actions{display:flex;gap:var(--s-2);flex-wrap:wrap}
+
+.panel{border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--bg-subtle)}
+.panel-head{
+  display:flex;align-items:center;gap:var(--s-3);padding:var(--s-3) var(--s-4);
+  border-bottom:1px solid var(--border);min-height:44px;flex-wrap:wrap;
+}
+.panel-head h3{font-size:var(--text-sm);font-weight:600}
+.panel-head .grow{flex:1;min-width:0}
+.panel-head .panel-note{font-size:var(--text-xs);color:var(--fg-subtle)}
+.panel-body{padding:var(--s-4)}
+.help-panel .panel-body{line-height:1.55}
+.help-panel .panel-body>p{margin:0;color:var(--fg-muted);font-size:var(--text-sm)}
+.help-steps{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.help-step{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--border)}
+.help-step:first-child{border-top:0;padding-top:0}
+.help-step:last-child{padding-bottom:0}
+.help-step-number,.help-flow-number{display:grid;place-items:center;flex:none;width:24px;height:24px;border-radius:50%;background:var(--surface-hover);color:var(--fg);font:600 12px var(--mono)}
+.help-step strong{display:block;font-size:var(--text-sm);font-weight:600}
+.help-step p{margin:2px 0 0;color:var(--fg-muted);font-size:var(--text-sm)}
+.help-flow{margin:0;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.help-flow-track{display:flex;align-items:stretch;gap:8px}
+.help-flow-node{display:flex;flex:1 1 0;min-width:0;flex-direction:column;align-items:flex-start;gap:6px;padding:0}
+.help-flow-node strong{font-size:var(--text-sm);line-height:1.25}
+.help-flow-node small{color:var(--fg-muted);line-height:1.35}
+.help-flow-arrow{align-self:center;color:var(--fg-subtle);font-size:18px}
+.help-flow figcaption{margin:16px 0 0}
+.help-panel code{font:12px var(--mono);padding:1px 5px;border-radius:4px;background:var(--surface-hover);color:var(--fg);overflow-wrap:anywhere}
+.help-panel td,.help-panel tbody th{vertical-align:top;text-align:left;font-weight:400;line-height:1.6}
+.help-panel tbody th{font-family:var(--mono);width:3.5em}
+@media(max-width:680px){.help-flow-track{display:grid;grid-template-columns:1fr;gap:8px}.help-flow-node{flex-direction:row;align-items:center;flex-wrap:wrap}.help-flow-node small{flex-basis:100%;padding-left:30px}.help-flow-arrow{line-height:1;transform:rotate(90deg)}}
+.panel-body.flush{padding:0}
+/* A flush body holds a table directly. Clip it to its own rounded corners, or
+ * a row background paints as a square patch over the panel's corner radius. */
+.panel > .panel-body.flush{
+  overflow:clip;
+  border-radius:0 0 calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px);
+}
+.section{margin:0}
+.section > .panel{border:0;background:transparent}
+.section > .panel > .panel-head{padding:0 0 12px;min-height:0;border:0}
+.section > .panel > .panel-body{background:var(--bg-subtle);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px}
+.section .panel-body > .form-grid{grid-template-columns:minmax(0,1fr)}
+.section .form-grid .span-2{grid-column:auto}
+.section .field > .row > .input{flex:1;min-width:150px;width:auto}
+.backup-settings .input{max-width:260px;width:100%;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.backup-settings .panel-body .form-grid{grid-template-columns:1fr 1fr;column-gap:var(--s-5);row-gap:var(--s-2)}
+.backup-settings .field{min-width:0}
+.backup-settings .hint{overflow-wrap:anywhere}
+.backup-settings .policy-hint{margin-top:var(--s-3);margin-bottom:0;max-width:100%}
+.backup-settings .error-text{margin:var(--s-3) 0 0}
+.backup-settings .error-text:empty{display:none}
+#settings-backups{scroll-margin-block:90px}
+
+/* ---- Overview: one operational status strip, quiet supporting data ------ */
+.overview-stack{gap:20px}
+.overview-bridge{padding:24px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.overview-bridge-copy{flex:1;min-width:200px}
+.overview-bridge h2,.overview-summary h2,.overview-section-title{font-size:var(--text-sm);font-weight:500}
+.overview-state{display:flex;align-items:center;gap:10px;margin:12px 0;font-size:28px;font-weight:500;letter-spacing:-.02em}
+.overview-state::before{content:'';width:9px;height:9px;border-radius:50%;background:var(--red);flex:none}
+.overview-state[data-running="true"]::before{background:var(--green)}
+.overview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.overview-summary{padding:20px;display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.overview-count{font-family:var(--mono);font-size:30px;line-height:1.2;margin:16px 0 8px}
+.overview-summary .btn{margin-top:auto}
+.overview-service-list{overflow-wrap:anywhere}
+.overview-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:4px 0 20px}
+.overview-metrics dt{font-size:var(--text-xs);color:var(--fg-muted)}
+.overview-metrics dd{font:24px var(--mono);margin:8px 0 0;overflow-wrap:anywhere}
+@media(max-width:600px){
+  .overview-grid{grid-template-columns:minmax(0,1fr)}
+  .overview-bridge{padding:20px}
+  .overview-metrics{gap:8px}
+  .overview-metrics dd{font-size:20px}
+}
+
+/* ---- Roblox: a still frame, not a live feed ----------------------------- */
+.roblox-panel{min-width:0}
+.roblox-panel .panel-body>.hint{margin:0 0 16px}
+#roblox-snapshot{min-width:0;overflow-wrap:anywhere}
+#roblox-snapshot-meta{gap:8px 16px;font-size:var(--text-xs);color:var(--fg-muted)}
+#roblox-snapshot-meta .hint{margin:0}
+#roblox-snapshot-meta time{font-family:var(--mono);font-variant-numeric:tabular-nums}
+#roblox-snapshot-meta .warn,#roblox-snapshot-meta .error-text{flex-basis:100%}
+.roblox-snapshot-image{display:block;width:100%;height:auto;max-height:65vh;object-fit:contain;margin-top:16px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm)}
+/* The frame's own actions sit on the line that names it, so the picture keeps
+ * the full width of the panel. */
+#roblox-snapshot-meta .btn{margin-left:2px}
+#roblox-snapshot-meta .btn:first-of-type{margin-left:auto}
+
+/* ---- Snapshot viewer: inspect one frame, with zoom and pan -------------- *
+ * Only the frame is drawn: no box behind it, no panel of its own. While it fits
+ * it sits centred; `safe` drops that centring as soon as the frame is larger
+ * than the window, because a centred overflow would put its left and top edge
+ * out of reach. */
+.snapshot-layer{
+  position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;gap:var(--s-3);
+  padding:var(--s-3);background:rgba(0,0,0,.86);animation:fade-in .12s ease;
+}
+.snapshot-layer:fullscreen{background:#000}
+.snapshot-bar{display:flex;align-items:center;gap:var(--s-2);flex-wrap:wrap;color:var(--fg)}
+.snapshot-caption{font-size:var(--text-xs);color:var(--fg-muted);min-width:0;overflow-wrap:anywhere}
+.snapshot-zoom-label{font-size:var(--text-xs);color:var(--fg-muted);min-width:52px;text-align:center}
+.snapshot-canvas{
+  flex:1;min-height:0;overflow:auto;display:grid;
+  place-content:safe center;justify-items:safe center;
+}
+.snapshot-canvas:focus-visible{box-shadow:var(--focus-ring)}
+.snapshot-canvas.is-zoomed{cursor:grab}
+.snapshot-canvas.is-panning{cursor:grabbing}
+/* Zoom sets the width, never a transform: the scroll box then knows how large
+ * the frame really is and can pan it in both directions. */
+.snapshot-zoom-image{
+  display:block;max-width:none;height:auto;border:1px solid var(--border);
+  border-radius:var(--radius-sm);user-select:none;-webkit-user-drag:none;
+}
+@media(max-width:480px){
+  .snapshot-layer{padding:var(--s-2)}
+  .snapshot-caption{flex-basis:100%}
+}
+.roblox-recovery{display:flex;align-items:center;gap:12px 16px;flex-wrap:wrap;padding:16px;border-top:1px solid var(--border)}
+.roblox-recovery>.hint{margin:0;min-width:180px}
+#roblox-rejoin-message{flex-basis:100%;overflow-wrap:anywhere;margin:0}
+#roblox-rejoin-message:empty{display:none}
+@media(max-width:480px){
+  .roblox-panel .panel-head .panel-note{flex-basis:100%;order:1}
+  .roblox-recovery>.hint{flex-basis:100%}
+}
+
+/* ---- Custom select (Bloub k-select) -------------------------------------- */
+.k-select{position:relative;display:block}
+.k-select-trigger{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  width:100%;min-height:34px;padding:6px 12px;font-family:inherit;font-size:var(--text-sm);
+  border:1px solid var(--border);border-radius:var(--radius-md);
+  background:var(--surface);color:var(--fg);text-align:left;cursor:pointer;
+  transition:border-color .12s ease,transform .12s ease;
+}
+.k-select-trigger:hover,.k-select.open .k-select-trigger{border-color:var(--border-strong)}
+.k-select.open .k-select-trigger{border-color:var(--border-strong)}
+.k-select-trigger:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+.k-select-trigger[aria-disabled="true"]{opacity:.55;cursor:not-allowed}
+.k-select-trigger[aria-disabled="true"]:hover{border-color:var(--border)}
+.k-select-caret{display:inline-flex;align-items:center;justify-content:center;color:var(--fg-subtle);transition:transform .15s ease}
+.k-select-caret svg.lucide{width:16px;height:16px}
+.k-select.open .k-select-caret{transform:rotate(180deg)}
+.k-select-menu{
+  position:absolute;z-index:60;left:0;right:0;top:calc(100% + 4px);
+  min-width:200px;max-width:min(340px,calc(100vw - 40px));padding:5px;margin:0;
+  list-style:none;background:var(--surface);border:1px solid var(--border-subtle);border-radius:var(--radius-md);
+  box-shadow:var(--shadow-md);
+  /* The menu clips, the rows scroll inside their own box instead of in the menu
+   * itself: a scrollbar carried by the menu is laid out in its padding box and
+   * paints its square ends straight over the rounded corners. Inset by the
+   * menu's padding, the scroller stops short of them, and the corners stay
+   * round however far the list runs. */
+  overflow:hidden;
+}
+.k-select-menu.hidden{display:none}
+/* A menu scrolls only where the page asks it to (--k-select-max-h) — without
+ * that height there is no scrollbar at all, exactly as before. It is the
+ * positioning context of its own rows and of the hover pill that stands in for
+ * them, so the pill travels with the list as it scrolls. */
+.k-select-scroll{
+  position:relative;min-width:0;max-height:var(--k-select-max-h,none);
+  overflow-y:auto;overscroll-behavior:contain;
+}
+/* The menu is an elevator: it drops in from the control it belongs to and
+ * withdraws the same way, so opening a select reads as one motion instead of a
+ * flash. The exit is timed by MENU_EXIT_MS in ui.js — the two have to agree. */
+@keyframes k-menu-in{
+  from{opacity:0;transform:translateY(-7px)}
+  to{opacity:1;transform:none}
+}
+@keyframes k-menu-out{
+  from{opacity:1;transform:none}
+  to{opacity:0;transform:translateY(-5px)}
+}
+.k-select-menu.is-opening{animation:k-menu-in .17s var(--digit-ease) both}
+.k-select-menu.is-closing{animation:k-menu-out 130ms ease both;pointer-events:none}
+@media (prefers-reduced-motion:reduce){
+  .k-select-menu.is-opening,.k-select-menu.is-closing{animation:none}
+}
+/* One row of a menu, whichever menu it is in: the custom select chooses between
+ * rows, a menu of actions does something with them (ui.js: customSelect,
+ * actionMenu). Both are the same surface, so it is written once. */
+.k-option{
+  display:flex;align-items:center;gap:12px;width:100%;min-height:32px;
+  padding:7px 9px;border:0;border-radius:var(--radius-sm);background:transparent;
+  color:var(--fg);font-family:inherit;font-size:var(--text-sm);text-align:left;cursor:pointer;
+}
+/* Stepped aside while the sticky hover pill stands in for the row it is on:
+ * the suppression has to be written as long as this rule to beat it, so a
+ * longer selector here would quietly bring the second highlight back. */
+.k-option:hover,.k-option:focus-visible{background:var(--surface-active);outline:none}
+.k-option:disabled{opacity:.45;cursor:not-allowed}
+.k-option.danger{color:var(--red)}
+.k-actions-menu .k-option.danger svg.lucide{color:inherit}
+.k-select .k-option.selected{background:transparent}
+.k-select .k-option.selected .k-option-copy > span{color:var(--fg)}
+.k-option-copy{display:flex;flex:1;flex-direction:column;gap:3px;min-width:0}
+.k-option-check{flex:0 0 16px;color:#d1d1d1;font-size:15px;visibility:hidden}
+.k-option.selected .k-option-check{visibility:visible}
+.k-select.disabled{opacity:.6}
+.k-select.disabled .k-select-trigger{cursor:not-allowed}
+
+/* ---- Slim scrollbars ----------------------------------------------------- */
+/* Wherever the console scrolls its own content — the rows of a custom select,
+ * the frame the log is read through — the scrollbar is painted rather than left
+ * to the platform: one slim floating pill, no arrow buttons at the ends of the
+ * track. The standard properties are the fallback, not the default: as soon as
+ * one of them is set, Chromium drops the painted scrollbar below and takes the
+ * platform's own square one back. */
+.scroll-slim::-webkit-scrollbar{width:10px}
+.scroll-slim::-webkit-scrollbar-button{display:none}
+.scroll-slim::-webkit-scrollbar-track{background:transparent}
+.scroll-slim::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.3);border:3px solid transparent;border-radius:999px;background-clip:content-box;
+}
+.scroll-slim::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.45);background-clip:content-box}
+@supports not selector(::-webkit-scrollbar){
+  .scroll-slim{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.3) transparent}
+}
+
+/* ---- The arrow beside a button, and the menu it opens -------------------- *
+ * What a control can also do, one step behind it. The arrow is part of the
+ * button it belongs to — one outline, two hit areas — and the menu behind it is
+ * the menu of the custom select: the same surface, the same rows, the same
+ * elevator animation, built by the same ui.js (actionMenu). All this adds is
+ * where it hangs and which way it travels: it belongs to the right end of a bar
+ * that sits at the bottom of a page, so it opens upwards out of the arrow
+ * instead of dropping down from a field. */
+.btn-split{display:inline-flex;align-items:stretch}
+/* The arrow is the second half of the split, and it sits inside the wrapper the
+ * menu is positioned in — so the shared edge has to be written for the wrapper
+ * (it is the flex item) and for the button inside it (it is what is seen). */
+.btn-split > .btn:first-child{border-top-right-radius:0;border-bottom-right-radius:0}
+.btn-split > .btn + .btn,
+.btn-split > .k-actions{margin-left:-1px}
+.btn-split > .btn + .btn,
+.btn-split > .k-actions > .btn{border-top-left-radius:0;border-bottom-left-radius:0;padding:0 10px}
+/* The shared edge is drawn by whichever half is under the pointer, so the seam
+ * does not flicker as the pointer crosses it. */
+.btn-split > .btn:hover,.btn-split > .btn:focus-visible,
+.btn-split > .k-actions > .btn:hover,.btn-split > .k-actions > .btn:focus-visible{position:relative;z-index:1}
+/* The seam itself, as a hairline: shorter than the button, so the two halves
+ * read as one control cut in two rather than as two buttons pushed together.
+ * It is drawn over both, or the half under the pointer would cover it. */
+.btn-split > .btn + .btn::before,.btn-split > .k-actions::before{
+  content:'';position:absolute;left:0;top:50%;z-index:2;
+  width:1px;height:16px;margin-top:-8px;
+  background:var(--fg-on-accent);opacity:.32;
+}
+.btn-split > .btn + .btn{position:relative}
+.k-actions{position:relative;display:inline-flex;align-items:stretch}
+.k-actions-trigger svg.lucide{width:16px;height:16px}
+.k-actions-menu{
+  left:auto;right:0;top:auto;bottom:calc(100% + 6px);
+  min-width:220px;
+}
+/* The select's elevator, mirrored: the menu rises out of the arrow it belongs
+ * to and sinks back into it. The exit time is MENU_EXIT_MS in ui.js, exactly as
+ * for the select. */
+@keyframes k-actions-in{
+  from{opacity:0;transform:translateY(7px)}
+  to{opacity:1;transform:none}
+}
+@keyframes k-actions-out{
+  from{opacity:1;transform:none}
+  to{opacity:0;transform:translateY(5px)}
+}
+.k-actions-menu.is-opening{animation:k-actions-in .17s var(--digit-ease) both}
+.k-actions-menu.is-closing{animation:k-actions-out 130ms ease both}
+.k-actions-menu .k-option svg.lucide{width:16px;height:16px;flex:none;color:var(--fg-subtle)}
+
+/* ---- Buttons ------------------------------------------------------------ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--s-2);
+  height:32px;padding:0 var(--s-3);border-radius:var(--radius-md);
+  border:1px solid var(--border);background:var(--surface);color:var(--fg);
+  font-family:inherit;font-size:var(--text-sm);font-weight:500;line-height:1;
+  cursor:pointer;white-space:nowrap;user-select:none;
+  transition:background .12s ease,border-color .12s ease,color .12s ease,transform .12s ease;
+}
+.btn:hover{background:var(--surface-hover);border-color:var(--border-strong)}
+/* Pressing gives: the control settles under the pointer instead of just
+ * changing colour. Compact controls shrink a touch more, since a pixel of
+ * movement is all a 16px box can show. */
+.btn:active{transform:translateY(1px) scale(.97)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn svg.lucide{width:14px;height:14px}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:var(--fg-on-accent)}
+.btn.primary:hover{background:var(--blue-hover);border-color:var(--blue-hover)}
+.btn.danger{color:var(--red);border-color:var(--red-line)}
+.btn.danger:hover{background:var(--red-bg);border-color:var(--red)}
+
+/* ---- Danger zone (domain edit page) --------------------------------------- */
+.panel.danger-zone{border-color:var(--red-line)}
+.panel.danger-zone .panel-head h3{color:var(--red)}
+.panel.danger-zone .row{align-items:center;gap:var(--s-3);flex-wrap:wrap}
+.panel.danger-zone .panel-body .row + .row{border-top:1px solid var(--border);padding-top:var(--s-3)}
+.domain-delete-copy{flex:1 1 280px;min-width:0;overflow-wrap:anywhere}
+.domain-delete-row > .btn{max-width:100%;height:auto;min-height:36px;white-space:normal;text-align:left;padding-block:8px}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--fg-muted)}
+.btn.ghost:hover{background:var(--surface-hover);color:var(--fg)}
+.btn.sm{height:28px;padding:0 var(--s-2);font-size:var(--text-xs)}
+.btn .icon-only{width:28px;padding:0}
+.btn.busy .spin{display:inline-block}
+
+/* Text that changes in place gets delivered instead of cut over: the span is
+ * created by installLabelSwap in ui.js the first time a button's text changes,
+ * and setPopText puts the same class on a longer sentence that lifts in. */
+@keyframes text-arrive-in{
+  from{opacity:0;transform:translateY(3px)}
+  to{opacity:1;transform:none}
+}
+.btn-label{display:inline-block}
+.is-arriving{animation:text-arrive-in .2s var(--digit-ease) both}
+@media (prefers-reduced-motion:reduce){
+  .is-arriving{animation:none}
+}
+
+/* The same press, for the compact controls that are not .btn. Their own rules
+ * above carry the transform in their transition list — a second `transition`
+ * here would replace theirs, and the checkbox fill would stop animating. */
+.sidebar-icon-btn:active,.topbar-menu:active{transform:scale(.92)}
+.k-select-trigger:not([aria-disabled="true"]):active{transform:scale(.97)}
+.t-check:not(:disabled):active{transform:scale(.9)}
+@media (prefers-reduced-motion:reduce){
+  .btn:active,.sidebar-icon-btn:active,.topbar-menu:active,
+  .k-select-trigger:not([aria-disabled="true"]):active,.t-check:not(:disabled):active{transform:none}
+}
+
+/* ---- Domain history: compact local operation ledger ---------------------- */
+.main > .panel + .panel{margin-top:var(--s-5)}
+.domain-history .panel-head .k-select{width:170px;max-width:100%}
+.history-note{margin:0;padding:var(--s-3) var(--s-4);font-size:var(--text-xs);color:var(--fg-muted)}
+.history-message{padding:0 var(--s-4) var(--s-3);font-size:var(--text-xs);overflow-wrap:anywhere}
+.history-table{max-height:360px;overflow:auto;border-radius:0 0 var(--radius-lg) var(--radius-lg)}
+.history-table th{position:sticky;top:0;background:var(--bg-subtle);z-index:1}
+.history-table .cell-num{white-space:nowrap}
+.history-operation,.backup-name{overflow-wrap:anywhere;min-width:100px;max-width:230px}
+.history-operation{font-family:var(--mono);font-size:var(--text-xs)}
+.activity-result{font-size:var(--text-xs);font-weight:500}
+.activity-result.ok{color:var(--green)}
+.activity-result.failed{color:var(--red)}
+.backup-actions{min-width:185px;text-align:right}
+.backup-actions .btn{margin:2px}
+.domain-history .empty{padding:var(--s-6) var(--s-4)}
+@media (max-width:720px){
+  .history-table .cell-num{white-space:normal}
+  .backup-actions{min-width:0}
+  .backup-actions .btn{width:28px;justify-content:center;padding:0;margin:1px}
+  .backup-actions .btn span{display:none}
+}
+@media (max-width:640px){
+  .domain-history .panel-head{gap:var(--s-2)}
+  .domain-history .panel-head .k-select{width:145px}
+}
+
+/* ---- Usage: request ledger, all-time totals + UTC daily bars --------------- */
+.usage-page h1,.usage-page h2{font-family:'Geist',var(--sans)}
+.usage-page h2{font-size:var(--text-md)}
+.usage-filters{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr);gap:var(--s-3);margin-bottom:var(--s-5)}
+.usage-filters .k-select-value{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.usage-filters .k-select-menu{min-width:0;--k-select-max-h:280px}
+.usage-filters .k-option-copy{overflow-wrap:anywhere}
+.usage-results{display:flex;flex-direction:column;gap:var(--s-4)}
+.usage-tracking,.usage-scope,.usage-range{margin:0;color:var(--fg-muted);font-size:var(--text-xs);overflow-wrap:anywhere}
+.usage-tracking{color:var(--fg)}
+.usage-scope{margin-top:calc(-1 * var(--s-2))}
+.usage-totals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-3)}
+.usage-stat{min-width:0;display:flex;flex-direction:column;gap:var(--s-2);padding:var(--s-4);border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--bg-subtle)}
+.usage-stat-label{font-size:var(--text-sm);color:var(--fg-muted)}
+.usage-stat strong{font-family:var(--mono);font-size:clamp(18px,2.5vw,28px);font-weight:400;letter-spacing:-.04em;overflow-wrap:anywhere}
+.usage-stat-period{font-size:var(--text-xs);color:var(--fg-subtle)}
+.usage-stat.succeeded strong{color:var(--green)}
+.usage-stat.failed strong{color:var(--red)}
+.usage-message{display:flex;align-items:center;gap:var(--s-3);padding:var(--s-5);border:1px dashed var(--border-strong);border-radius:var(--radius-lg);color:var(--fg-muted);font-size:var(--text-sm)}
+.usage-message p{margin:var(--s-2) 0 0}
+.usage-message h2{color:var(--fg)}
+.usage-legend{display:flex;flex-wrap:wrap;gap:var(--s-4);padding:var(--s-4);font-size:var(--text-xs);color:var(--fg-muted)}
+.usage-legend span{display:inline-flex;gap:var(--s-2);align-items:center}
+.usage-legend span::before{content:'';width:9px;height:9px;background:var(--green)}
+.usage-legend .failed::before{background:var(--red);border-radius:50%}
+.usage-chart{display:block;width:100%;height:auto;min-height:150px;padding:0 var(--s-2)}
+.usage-gridline{stroke:var(--border);stroke-width:1}
+.usage-axis{fill:var(--fg-muted);font-family:var(--mono);font-size:11px}
+.usage-bar-success{fill:var(--green)}
+.usage-bar-failure{fill:var(--red)}
+.usage-range{padding:var(--s-3) var(--s-4)}
+.usage-data{border-top:1px solid var(--border)}
+.usage-data summary{cursor:pointer;padding:var(--s-3) var(--s-4);font-size:var(--text-sm);color:var(--fg-muted)}
+.usage-data summary:hover{color:var(--fg)}
+.usage-table{max-height:360px;overflow:auto;border-radius:0 0 var(--radius-lg) var(--radius-lg)}
+.usage-table caption{text-align:left;padding:var(--s-3);font-size:var(--text-xs);color:var(--fg-muted)}
+.usage-table tbody th{white-space:normal;overflow-wrap:anywhere;min-width:110px;max-width:340px;font-family:var(--mono)}
+.usage-table td{text-align:right}
+.usage-table thead th:not(:first-child){text-align:right}
+.usage-table .cell-num{white-space:nowrap}
+@media (max-width:640px){
+  .usage-filters{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .usage-filters > .field:first-child{grid-column:1 / -1}
+  .usage-totals{gap:var(--s-2)}
+  .usage-stat{padding:var(--s-3) var(--s-2)}
+  .usage-stat-label{font-size:var(--text-xs)}
+  .usage-axis{font-size:22px}
+}
+
+/* ---- Forms --------------------------------------------------------------- */
+.field{display:flex;flex-direction:column;gap:var(--s-2);min-width:0}
+.field > label,.group-label{font-size:var(--text-sm);font-weight:500;color:var(--fg)}
+.hint{font-size:var(--text-xs);color:var(--fg-subtle);margin-top:calc(var(--s-1) * -1)}
+.hint.warn{color:var(--amber)}
+
+.input,.select,.textarea{
+  width:100%;border:1px solid var(--border);border-radius:var(--radius-md);
+  background:var(--bg);color:var(--fg);font-family:inherit;font-size:var(--text-sm);
+  padding:0 var(--s-3);height:34px;transition:border-color .12s ease,box-shadow .12s ease;
+}
+.textarea{height:auto;min-height:64px;padding:var(--s-2) var(--s-3);resize:vertical;font-family:var(--mono);font-size:var(--text-xs);line-height:1.6}
+.select{appearance:none;cursor:pointer;padding-right:var(--s-8);
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a1a1a1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right var(--s-2) center;}
+.select option{background:var(--bg);color:var(--fg)}
+.input:focus,.select:focus,.textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,145,255,.28)}
+.input::placeholder,.textarea::placeholder{color:var(--fg-subtle)}
+.input:disabled,.select:disabled,.textarea:disabled{opacity:.55;cursor:not-allowed}
+
+/* ---- Animated checkbox (Transitions.dev) -------------------------------- *
+ * Bloub's checkbox: the box fills first, then the check draws itself in along
+ * its path, so a tick is never just there. --check-len is the length of that
+ * path (M1 5.52L3.92 9.17L9.17 1 — getTotalLength() 14.4, rounded up), which
+ * the dash offset travels; returning it on uncheck lets a half-drawn check
+ * reverse cleanly. The markup and the state live in ui.js (checkBox). */
+:root{
+  --check-box:150ms;
+  --check-draw:350ms;
+  --check-delay:0ms;
+  --check-uncheck:150ms;
+  --check-ease:cubic-bezier(.22,1,.36,1);
+}
+.t-check{
+  --check-len:15;
+  flex:none;display:inline-flex;align-items:center;justify-content:center;
+  width:16px;height:16px;padding:0;border:1px solid var(--border-strong);border-radius:var(--radius-2xs);
+  background:var(--bg);color:var(--fg-on-accent);cursor:pointer;
+  transition:background var(--check-box) var(--check-ease),box-shadow var(--check-box) var(--check-ease),transform var(--check-box) var(--check-ease);
+}
+/* Square for any number of choices; round only where one choice excludes the others. */
+.t-check[role="radio"]{border-radius:50%}
+.t-check:hover{border-color:var(--fg-subtle)}
+.t-check[aria-checked="true"]{background:var(--blue);border-color:var(--blue)}
+.t-check:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+.t-check:disabled{opacity:.55;cursor:not-allowed}
+.t-check svg{
+  display:block;width:11px;height:11px;fill:none;stroke:currentColor;
+  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;
+}
+.t-check svg path{
+  stroke-dasharray:var(--check-len,15);
+  stroke-dashoffset:var(--check-len,15);
+  transition:stroke-dashoffset var(--check-uncheck) var(--check-ease);
+}
+.t-check[aria-checked="true"] svg path{
+  stroke-dashoffset:0;
+  transition:stroke-dashoffset var(--check-draw) var(--check-ease) var(--check-delay);
+}
+@media (prefers-reduced-motion:reduce){
+  .t-check,.t-check svg path{transition:none !important}
+}
+
+/* ---- Digits that pop in (Transitions.dev) -------------------------------- *
+ * For the stat figures: a number arrives one character at a time instead of
+ * being swapped as a whole. The markup and the (capped) stagger come from
+ * ui.js (digitGroup), which splits the text into one span per character. */
+:root{
+  --digit-dur:500ms;
+  --digit-distance:8px;
+  --digit-stagger:70ms;
+  --digit-blur:2px;
+  --digit-ease:cubic-bezier(.34,1.45,.64,1);
+  --digit-dir-x:0;
+  --digit-dir-y:1;
+}
+@keyframes t-digit-pop-in{
+  0%{
+    transform:translate(
+      calc(var(--digit-distance) * var(--digit-dir-x)),
+      calc(var(--digit-distance) * var(--digit-dir-y))
+    );
+    opacity:0;
+    filter:blur(var(--digit-blur));
+  }
+  100%{transform:translate(0,0);opacity:1;filter:blur(0)}
+}
+/* A long figure on a narrow card has to break like any other text: the digits
+ * are flex items, so without this the group would run out of its card instead
+ * of wrapping onto a second line. */
+.t-digit-group{display:inline-flex;align-items:baseline;flex-wrap:wrap}
+/* Folded back into one text node after the pop-in: ordinary inline text. */
+.t-digit-group.is-settled{display:inline}
+/* `pre` because a space is a character of its own here: inside an inline-block
+ * it would be a leading/trailing space and collapse away, and "Unsaved
+ * changes" would read "Unsavedchanges". */
+.t-digit{display:inline-block;white-space:pre;will-change:transform,opacity,filter}
+.t-digit-group.is-animating .t-digit{animation:t-digit-pop-in var(--digit-dur) var(--digit-ease) both}
+.t-digit-group.is-animating .t-digit{animation-delay:calc(var(--digit-stagger) * var(--i,0))}
+/* Words are read, not counted: they settle without the figure's overshoot
+ * and with less travel and blur, so a status word does not wobble. */
+.t-digit-group.is-word{--digit-distance:4px;--digit-blur:1px;--digit-ease:var(--ease-out);--digit-dur:360ms}
+@media (prefers-reduced-motion:reduce){
+  .t-digit-group .t-digit{animation:none !important}
+}
+
+/* ---- Rows that arrive (Transitions.dev) --------------------------------- *
+ * The wave the figures make, with the row of a table as its unit: a list is
+ * read row by row, so it arrives row by row instead of appearing whole. ui.js
+ * decides how long the whole list may take and hands each row its own delay
+ * (--row-delay); the stylesheet only knows how to fade one row in. */
+:root{
+  --row-dur:430ms;
+  --row-blur:2px;
+  --row-ease:cubic-bezier(.22,1,.36,1);
+}
+@keyframes t-row-in{
+  from{opacity:0;filter:blur(var(--row-blur))}
+  to{opacity:1;filter:blur(0)}
+}
+/* Fade rows in place: translating them creates temporary scroll overflow in
+ * table wrappers, including otherwise short lists in bounded scroll areas. */
+.t-rows > tr{animation:t-row-in var(--row-dur) var(--row-ease) both;animation-delay:var(--row-delay,0ms)}
+@media (prefers-reduced-motion:reduce){
+  .t-rows > tr{animation:none !important}
+}
+
+/* ---- Streamed text (Transitions.dev) ------------------------------------- *
+ * For the log viewer: the lines that arrived with the last poll resolve word
+ * by word instead of being dropped in as a block, so a tail that is still
+ * being written reads as being written. ui.js wraps each word in a
+ * .t-stream-w span (spaces stay outside the spans, so the viewer's text is
+ * still the log text word for word) and adds .is-in word by word; the step
+ * between two words is capped there, the way the digit stagger is. */
+:root{
+  --stream-gap:60ms;
+  --stream-fade:350ms;
+  --stream-blur:1px;
+  --stream-ease:cubic-bezier(.22,1,.36,1);
+}
+.t-stream-w{
+  opacity:0;
+  filter:blur(var(--stream-blur));
+  transition:
+    opacity var(--stream-fade) var(--stream-ease),
+    filter var(--stream-fade) var(--stream-ease);
+}
+.t-stream-w.is-in{opacity:1;filter:blur(0)}
+@media (prefers-reduced-motion:reduce){
+  .t-stream-w{transition:none !important;filter:none !important;opacity:1 !important}
+}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4) var(--s-4)}
+.form-grid .span-2{grid-column:span 2}
+@media (max-width:640px){.form-grid{grid-template-columns:1fr}.form-grid .span-2{grid-column:span 1}}
+.stack{display:flex;flex-direction:column;gap:var(--s-4)}
+/* A page body is one stack of panels: the top-level gap separates panels, the
+ * inner one keeps their contents together. */
+.main > .stack{gap:28px}
+.row{display:flex;align-items:center;gap:var(--s-3);flex-wrap:wrap}
+.row.end{justify-content:flex-end}
+/* A domain's services: one framed list, like Settings → Services. A row is the
+ * switch, the icon, the name and its state; the settings open beneath it. */
+.domain-services{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;background:var(--bg-subtle)}
+.domain-service{min-width:0;border-top:1px solid var(--border)}
+.domain-service:first-child{border-top:0}
+.domain-service-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);padding:10px var(--s-3) 10px var(--s-4);flex-wrap:wrap;transition:background .12s ease}
+.domain-service-head:hover{background:var(--surface-hover)}
+.domain-service.is-open > .domain-service-head{background:var(--surface)}
+.domain-service-toggle{display:flex;align-items:center;gap:var(--s-3);font-size:var(--text-sm);font-weight:500;cursor:pointer;min-width:0}
+.domain-service:not(.is-on) .domain-service-toggle > span:last-child{color:var(--fg-muted)}
+.domain-service.is-on .service-icon{color:var(--accent)}
+.domain-service-fields{border:0;margin:0;padding:var(--s-4) var(--s-4) var(--s-5) calc(var(--s-4) + 16px + 20px + var(--s-3) * 2);min-width:0;background:var(--well);border-top:1px solid var(--border)}
+.domain-service-fields[hidden]{display:none}
+.domain-service-controls{display:flex;align-items:center;gap:var(--s-2);margin-left:auto}
+.domain-service-disclosure svg{transition:transform .15s ease}
+.domain-service-disclosure[aria-expanded="true"] svg{transform:rotate(180deg)}
+.domain-service.is-disabled .domain-service-fields{opacity:.5}
+/* While editing, a row is a link to the service's own page: the chevron points
+ * onward, and the whole row (except the checkbox) opens it. */
+.domain-service.is-link > .domain-service-head{cursor:pointer}
+.domain-service.is-link .domain-service-disclosure svg{transform:rotate(-90deg)}
+.domain-service.is-link > .domain-service-head:hover .domain-service-disclosure{color:var(--fg)}
+/* The service's page: one service, its switch on top and its settings below. */
+.domain-service.is-page > .domain-service-head{background:var(--surface);padding:14px var(--s-4)}
+.domain-service.is-page > .domain-service-fields{padding:var(--s-5) var(--s-4)}
+.domain-service-disclosure[hidden]{display:none}
+/* A service's own page: the fields sit directly in the panel. */
+.domain-service-fields.is-page-fields{padding:0;background:none;border:0}
+.service-page-switch{display:flex;align-items:center;gap:var(--s-3)}
+.service-page-switch .switch-label{font-size:var(--text-sm);color:var(--fg-muted);cursor:pointer}
+.panel-head > .service-icon{color:var(--accent)}
+/* An on/off switch: the same control as a checkbox, drawn as a track and knob. */
+.t-check.is-switch{width:34px;height:20px;border-radius:999px;position:relative;background:var(--surface-hover);border-color:var(--border-strong)}
+.t-check.is-switch svg{display:none}
+.t-check.is-switch::after{content:'';position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:var(--fg-muted);transition:transform .18s var(--ease-out),background .18s ease}
+.t-check.is-switch[aria-checked="true"]{background:var(--blue);border-color:var(--blue)}
+.t-check.is-switch[aria-checked="true"]::after{transform:translateX(14px);background:#fff}
+@media(max-width:600px){.domain-service-fields{padding-left:var(--s-4)}.domain-service-toggle .service-icon{display:none}}
+.domain-service-fields .input:disabled,.domain-service-fields .textarea:disabled{opacity:1}
+.domain-form-actions{display:flex;justify-content:flex-end;align-items:center;gap:var(--s-3);width:100%;padding-top:var(--s-3);border-top:1px solid var(--border)}
+.domain-form-actions>.btn{flex:0 0 auto}
+.grow{flex:1;min-width:0}
+
+.segmented{display:inline-flex;border:1px solid var(--border);border-radius:var(--radius-md);background:var(--bg);padding:2px;gap:2px;flex-wrap:wrap}
+.segmented button{
+  border:none;background:transparent;color:var(--fg-muted);font-family:inherit;
+  font-size:var(--text-xs);font-weight:500;height:26px;padding:0 10px;border-radius:var(--radius-sm);cursor:pointer;
+}
+.segmented button:hover{color:var(--fg)}
+.segmented button[aria-pressed="true"]{background:var(--surface-hover);color:var(--fg);box-shadow:inset 0 0 0 1px var(--border)}
+
+.secrets-list{display:flex;flex-direction:column;gap:var(--s-2);margin-top:var(--s-2)}
+.secret-item{display:flex;align-items:center;gap:var(--s-2);font-size:var(--text-xs);color:var(--fg-muted);padding:var(--s-2) var(--s-3);border:1px solid var(--border);border-radius:var(--radius-md);background:var(--bg)}
+.secret-item svg.lucide{width:13px;height:13px;color:var(--fg-subtle);flex:none}
+.secret-item.ok svg.lucide{color:var(--green)}
+.secret-item .name{font-family:var(--mono)}
+.secret-item .grow{flex:1}
+
+/* ---- Tables -------------------------------------------------------------- */
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:var(--text-sm)}
+th{
+  text-align:left;font-size:var(--text-xs);font-weight:500;color:var(--fg-subtle);
+  padding:var(--s-2) var(--s-3);border-bottom:1px solid var(--border);white-space:nowrap;
+}
+td{padding:var(--s-3);border-bottom:1px solid var(--border);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tbody tr{transition:background .1s ease}
+tbody tr:hover{background:var(--surface-hover)}
+.cell-domain{font-family:var(--mono);font-size:var(--text-sm);word-break:break-all}
+.cell-muted{color:var(--fg-muted)}
+.cell-num{font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:var(--text-xs);color:var(--fg-muted)}
+.cell-actions{white-space:nowrap;text-align:right}
+.cell-actions .btn{margin-left:var(--s-1)}
+.cell-actions .btn.compact-hidden{display:none}
+.domain-actions-menu{
+  position:fixed;z-index:90;min-width:230px;padding:5px;
+  background:var(--surface);border:1px solid var(--border-subtle);border-radius:var(--radius-md);
+  box-shadow:var(--shadow-md);display:flex;flex-direction:column;gap:2px;
+}
+.domain-actions-item{
+  display:flex;align-items:center;gap:10px;width:100%;min-height:32px;
+  padding:7px 9px;border:0;border-radius:var(--radius-sm);background:transparent;
+  color:var(--fg);font-family:inherit;font-size:var(--text-sm);text-align:left;cursor:pointer;
+}
+.domain-actions-item:hover:not(:disabled),.domain-actions-item:focus-visible{background:var(--surface-active);outline:none}
+.domain-actions-item:disabled{opacity:.45;cursor:not-allowed}
+.domain-actions-item svg.lucide{width:16px;height:16px;flex:none;color:var(--fg-subtle)}
+tr.skeleton-row td{padding:var(--s-4) var(--s-3)}
+.skeleton{height:12px;border-radius:var(--radius-sm);background:var(--surface-hover);position:relative;overflow:hidden}
+.skeleton::after{content:"";position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);animation:shimmer 1.4s infinite}
+@keyframes shimmer{to{transform:translateX(100%)}}
+
+.tag{
+  display:inline-flex;align-items:center;height:20px;padding:0 7px;margin:2px 4px 2px 0;
+  border:1px solid var(--border);border-radius:var(--radius-sm);
+  font-family:var(--mono);font-size:var(--text-xs);color:var(--fg-muted);background:var(--surface);
+}
+.tag.more{border-style:dashed}
+
+/* ---- Datastore: stored collections, entries, raw documents ---------------- */
+.ds-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-3);margin:var(--s-4) 0}
+.ds-metrics > div{min-width:0;padding:var(--s-4);border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--bg-subtle)}
+.ds-metrics dt{font-size:var(--text-xs);color:var(--fg-muted)}
+.ds-metrics dd{margin:var(--s-2) 0 0;font:20px var(--mono);overflow-wrap:anywhere}
+.ds-toolbar{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s-4);flex-wrap:wrap;margin-bottom:var(--s-4)}
+.ds-search-field{flex:1 1 260px;max-width:420px;min-width:0}
+.ds-perpage-field{width:170px}
+.ds-toolbar-actions{display:flex;align-items:flex-end;gap:var(--s-3);flex-wrap:wrap}
+/* A key or a value can be arbitrarily long: both stay one line and are read
+ * through the tooltip, so a table row keeps its height. */
+.ds-key{max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ds-value{max-width:420px;min-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  font-family:var(--mono);font-size:var(--text-xs);color:var(--fg-muted)}
+.ds-tag{margin-left:var(--s-2)}
+.ds-value-input{min-height:150px}
+.ds-json-input{min-height:260px}
+@media (max-width:720px){
+  .ds-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ds-value{max-width:260px}
+}
+@media (max-width:480px){
+  .ds-metrics{grid-template-columns:minmax(0,1fr)}
+  .ds-search-field,.ds-perpage-field{flex-basis:100%;width:auto;max-width:none}
+}
+
+/* ---- Chips / badges ------------------------------------------------------- */
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:var(--text-xs);color:var(--fg-muted)}
+.chip svg.lucide{width:13px;height:13px}
+
+/* ---- Motion (CSP-safe, no inline styles) ----------------------------------- */
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+/* The ring stays put and only its dashes travel, so the glyph never shifts. */
+.spinner{
+  width:1em;height:1em;flex:none;display:inline-block;vertical-align:-.12em;
+  fill:none;stroke:currentColor;stroke-linecap:butt;
+}
+.spinner .spin-arc{
+  transform-box:view-box;transform-origin:12px 12px;
+  animation:spin .9s linear infinite;
+}
+svg.lucide.spin{
+  transform-box:view-box;transform-origin:12px 12px;
+  animation:spin 1s linear infinite;
+}
+@media (prefers-reduced-motion:reduce){
+  .spinner .spin-arc,svg.lucide.spin{animation:none}
+}
+.chip.togglable{border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--s-1) var(--s-2);cursor:pointer;background:var(--surface)}
+.chip.togglable:hover{border-color:var(--border-strong);color:var(--fg)}
+.chip.togglable:has(.t-check[aria-checked="true"]){border-color:var(--fg);color:var(--fg)}
+.panel.gap{margin-top:var(--s-5)}
+.row.center{justify-content:center}
+.row.quiet{color:var(--fg-muted);font-size:var(--text-sm);gap:var(--s-2)}
+.secret-item.padded{padding:var(--s-3)}
+.hint.spaced{margin-top:var(--s-4)}
+
+/* ---- Empty / error states -------------------------------------------------- */
+.empty{padding:var(--s-10) var(--s-6);text-align:center}
+.empty .glyph{
+  width:40px;height:40px;margin:0 auto var(--s-4);border-radius:var(--radius-sm);
+  background:var(--accent-bg);box-shadow:inset 0 0 0 1px var(--accent-line);display:grid;place-items:center;color:var(--accent);
+}
+.empty .glyph svg.lucide{width:18px;height:18px}
+.empty h4{margin:0 0 var(--s-1);font-size:var(--text-md);font-weight:600}
+.empty p{margin:0 0 var(--s-4);color:var(--fg-muted);font-size:var(--text-sm)}
+.error-text{color:var(--red);font-size:var(--text-xs)}
+.panel-head .error-text{flex-basis:100%}
+.callout{
+  --tone:var(--red);--tone-bg:var(--red-bg);--tone-line:var(--red-line);
+  display:flex;gap:var(--s-3);align-items:center;padding:10px var(--s-3);
+  border:1px solid var(--tone-line);border-radius:var(--radius-md);
+  background:var(--tone-bg);color:var(--fg);font-size:var(--text-sm);line-height:1.5;
+}
+.callout > svg.lucide{width:16px;height:16px;flex:none;color:var(--tone)}
+.callout > .btn{flex:none}
+.callout.warn{--tone:var(--amber);--tone-bg:var(--amber-bg);--tone-line:var(--amber-line)}
+.callout.info{--tone:var(--accent);--tone-bg:var(--accent-bg);--tone-line:var(--accent-line)}
+/* The generic .hint pulls itself up; inside a callout the block reads better
+ * with a little air between the sentence and its explanation. */
+.callout .hint{margin-top:var(--s-2)}
+/* A callout never touches the panel below it. */
+.callout + *{margin-top:var(--s-4)}
+
+/* ---- Console gate: sign in, first-run setup, start-up --------------------- *
+ * What is in front of the console wears the console's own design — the brand
+ * from the rail, a panel, a field, a button — in one narrow column, centred.
+ * It used to be a terminal window with traffic lights and a monospace title
+ * bar, which read as a different product on the way in. The only thing that is
+ * missing here is the rail itself, because signed out there is nothing to
+ * navigate to. */
+.gate-page{
+  min-height:100vh;min-height:100dvh;display:grid;place-items:center;
+  padding:var(--s-8) var(--s-5);
+}
+.gate-card{width:100%;max-width:420px;display:flex;flex-direction:column;gap:var(--s-4)}
+.gate-card .brand{font-size:16px}
+.gate-card .brand .logo{width:30px;height:30px;border-radius:var(--radius-sm);background:var(--blue);color:var(--fg-on-accent)}
+.gate-card .brand .logo svg.lucide{width:17px;height:17px}
+.gate-card form{display:flex;flex-direction:column;gap:var(--s-4)}
+/* The one action of a gate is the whole width of the card it stands in. */
+.gate-card form .btn.primary{width:100%;height:36px}
+.gate-lede{margin:0;color:var(--fg-muted);font-size:var(--text-sm)}
+.gate-progress{display:flex;align-items:center;gap:var(--s-2);color:var(--fg-muted);font-size:var(--text-sm)}
+.gate-progress .spinner{width:14px;height:14px}
+
+/* ---- Sign in ------------------------------------------------------------------ *
+ * The same raised surface as a dialog, headed by a tinted badge; the error is a
+ * callout, the help folds away until someone needs it. */
+.login-page{background:radial-gradient(60% 50% at 50% 38%,rgba(37,99,235,.10),transparent 70%),var(--bg)}
+.login-card{max-width:400px;gap:var(--s-5)}
+.login-card > .brand{justify-content:center}
+.login-panel{position:relative;overflow:hidden;background:var(--surface-raised);border-color:var(--border-subtle);box-shadow:var(--shadow-lg)}
+.login-panel::before{content:'';position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--accent-line),transparent)}
+.login-head{display:flex;align-items:center;gap:var(--s-3);padding:var(--s-5) var(--s-5) 0}
+.login-head h1{margin:0;font-size:var(--text-lg);font-weight:600;letter-spacing:-.01em}
+.login-head p{margin:2px 0 0;color:var(--fg-muted);font-size:var(--text-sm)}
+.login-badge{display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:var(--radius-sm);background:var(--accent-bg);box-shadow:inset 0 0 0 1px var(--accent-line);color:var(--accent)}
+.login-badge svg.lucide{width:18px;height:18px}
+.login-panel > .panel-body{padding:var(--s-5)}
+.login-form{gap:var(--s-4)}
+.login-field .copy-field > .input{height:40px;padding-right:44px;font-family:var(--mono);font-size:var(--text-sm)}
+.login-field .copy-field > .input::placeholder{font-family:var(--sans)}
+.login-field.has-error .input{border-color:var(--red);box-shadow:0 0 0 3px var(--red-bg)}
+.login-field.has-error{animation:login-shake .32s ease}
+@keyframes login-shake{20%,60%{transform:translateX(-4px)}40%,80%{transform:translateX(4px)}}
+@media (prefers-reduced-motion:reduce){.login-field.has-error{animation:none}}
+.login-error[hidden]{display:none}
+.gate-card .login-form .btn.primary{height:40px;font-size:var(--text-md)}
+.login-form .btn.primary .spinner{width:14px;height:14px}
+.login-help{border-top:1px solid var(--border-subtle);background:var(--well)}
+.login-help summary{display:flex;align-items:center;gap:8px;padding:12px var(--s-5);cursor:pointer;list-style:none;color:var(--fg-muted);font-size:var(--text-sm)}
+.login-help summary::-webkit-details-marker{display:none}
+.login-help summary:hover{color:var(--fg)}
+.login-help summary svg.lucide{width:15px;height:15px;color:var(--accent)}
+.login-steps{margin:0;padding:0 var(--s-5) var(--s-4) calc(var(--s-5) + 20px);display:flex;flex-direction:column;gap:8px;color:var(--fg-muted);font-size:var(--text-sm);line-height:1.6}
+.login-steps .copy-value-text{padding:1px 6px;border-radius:var(--radius-2xs);background:var(--surface);color:var(--fg);font-size:12px}
+.login-foot{display:flex;align-items:center;justify-content:center;gap:6px;margin:0;color:var(--fg-subtle);font-size:var(--text-xs)}
+.login-foot svg.lucide{width:12px;height:12px}
+
+/* ---- Dead end: the console's page for an address it cannot answer --------- *
+ * A route that leads nowhere is still a page of the console: the same head with
+ * the same title, and the empty state every other page uses when there is
+ * nothing to show — with a way out, rather than an error sentence under a raw
+ * heading. */
+.dead-end .empty{padding:var(--s-8) var(--s-6)}
+.dead-end .empty .glyph{width:44px;height:44px}
+.dead-end .empty .glyph svg.lucide{width:20px;height:20px}
+/* The address that led nowhere is part of the explanation, so it is set the way
+ * the console sets every other path or identifier. */
+.dead-end-path{
+  font-family:var(--mono);font-size:var(--text-xs);color:var(--fg-muted);
+  padding:1px 5px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);
+  overflow-wrap:anywhere;
+}
+
+/* ---- Terminal / login ------------------------------------------------------ */
+/* The gate above is what the console shows before sign-in; the start-up text in
+ * index.html is painted before any of that can run, so it sits in the same
+ * column to keep the first paint and the first page in one place. */
+.boot-fallback{
+  min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;
+  gap:var(--s-2);
+  /* The same column the gate draws itself in: 420px wide, centred — as padding,
+   * because this text is written before any script can wrap it in a card. */
+  padding:var(--s-8) max(var(--s-5), calc(50vw - 210px));
+}
+.boot-fallback-title{margin:0;font-size:16px;font-weight:600;color:var(--fg)}
+.boot-fallback-note{margin:0;font-size:var(--text-sm);color:var(--fg-muted)}
+.boot-fallback-error{margin:0;font-size:var(--text-xs);color:var(--red)}
+
+/* ---- Logs ------------------------------------------------------------------- */
+.logs-toolbar{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s-4);flex-wrap:wrap;margin-bottom:var(--s-4)}
+.logs-session-field{flex:1 1 280px;min-width:0;max-width:440px}
+.logs-auto-note{flex-basis:100%;margin:0}
+.logs-session-field .k-select-value{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.logs-session-field .k-select-menu{min-width:0;--k-select-max-h:280px}
+.logs-session-field .k-option-copy{min-width:0;overflow-wrap:anywhere}
+.logs-legacy-note{margin:0 0 var(--s-3)}
+.logs-panel{overflow:hidden;min-width:0}
+.logs-panel > .panel-body{border-radius:0 0 calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px);overflow:hidden}
+.logs-panel .panel-note{overflow-wrap:anywhere}
+/* The log is read through a frame of its own: it grows inside the frame and
+ * scrolls there, so a session that runs for hours never grows the page — the
+ * frame is what stops, and every line the bridge wrote is still in it. The
+ * wheel is not held inside the frame (no overscroll containment): a page that
+ * has to be scrolled to see the whole panel must not lose that to the log. */
+.log-frame{
+  max-height:var(--log-frame-h,min(60vh,560px));
+  overflow:auto;
+}
+/* The focus ring belongs to the frame, not to the text in it: the log is taller
+ * than the frame it is read through, so a ring on the text itself would be cut
+ * off at the top and the bottom. */
+.logs-panel .log-frame:has(.log-view:focus-visible){box-shadow:inset 0 0 0 2px var(--accent);border-radius:0 0 var(--radius-lg) var(--radius-lg)}
+.log-copy-buffer,.copy-buffer{position:fixed;left:-9999px;top:0}
+
+/* ---- Copy controls ------------------------------------------------------------ *
+ * One look for every copy: a ghost icon button that turns into a green check
+ * for a moment. Inside a field it sits at the right edge; next to a value or in
+ * a table row it appears on hover and keyboard focus. */
+.copy-btn{width:28px;padding:0;color:var(--fg-subtle);flex:none}
+.copy-btn:hover{color:var(--fg)}
+.copy-btn.is-copied,.copy-btn.is-copied:hover{color:var(--green);background:var(--green-bg)}
+.copy-btn svg.lucide{width:14px;height:14px}
+.copy-field{position:relative;display:block}
+.copy-field > .input{padding-right:72px}
+.copy-field-actions{position:absolute;top:50%;right:4px;transform:translateY(-50%);display:flex;gap:2px}
+.copy-field-actions .btn.icon-only{width:28px;padding:0;color:var(--fg-subtle)}
+.copy-field-actions .btn.icon-only:hover{color:var(--fg)}
+.copy-field.is-click-copy > .input{cursor:copy}
+.copy-field.is-click-copy > .input:hover{border-color:var(--border-strong)}
+.cell-copy{display:flex;align-items:center;gap:4px;min-width:0}
+.cell-copy-text{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cell-copy .copy-btn,.copy-value .copy-btn,.copy-block > .copy-btn{opacity:0;transition:opacity .12s ease}
+tr:hover .cell-copy .copy-btn,.cell-copy:focus-within .copy-btn,.cell-copy .copy-btn.is-copied,
+.copy-value:hover .copy-btn,.copy-value:focus-within .copy-btn,.fact:hover .copy-value .copy-btn,.copy-value .copy-btn.is-copied,
+.copy-block:hover > .copy-btn,.copy-block:focus-within > .copy-btn,.copy-block > .copy-btn.is-copied{opacity:1}
+/* Touch-only devices need visible actions; a touchscreen with a mouse still
+ * uses hover. Endpoint/token fields keep their copy actions visible. */
+@media (any-hover:none){.cell-copy .copy-btn,.copy-value .copy-btn,.copy-block > .copy-btn{opacity:1}}
+.copy-value{display:inline-flex;align-items:center;gap:4px;max-width:100%;vertical-align:middle}
+.copy-value .copy-btn{height:22px;width:22px}
+/* Inside a sentence the hidden button must not leave a gap: it takes its room
+ * only while the value is hovered or focused. */
+.login-steps .copy-value{gap:0}
+.login-steps .copy-value .copy-btn{width:0;margin-left:0;overflow:hidden;transition:width .12s ease,opacity .12s ease,margin .12s ease}
+.login-steps .copy-value:hover .copy-btn,.login-steps .copy-value:focus-within .copy-btn,.login-steps .copy-value .copy-btn.is-copied{width:22px;margin-left:4px}
+@media (any-hover:none){.login-steps .copy-value .copy-btn{width:22px;margin-left:4px}}
+.copy-value-text{min-width:0;overflow-wrap:anywhere;cursor:copy;border-radius:var(--radius-xs);transition:color .12s ease}
+.copy-value-text:hover{color:var(--accent)}
+.copy-value-text.mono{font-family:var(--mono)}
+.copy-block{position:relative}
+.copy-block > .copy-btn{position:absolute;top:6px;right:6px;background:var(--surface)}
+.copy-block > .workflow-output:empty,.copy-block > .workflow-output:empty + .copy-btn{display:none}
+@media(max-width:540px){.logs-session-field{flex-basis:100%;max-width:none}.logs-toolbar .page-actions{width:100%}.logs-toolbar .page-actions .btn{flex:1}}
+.log-view{
+  margin:0;padding:var(--s-4);font-family:var(--mono);font-size:var(--text-xs);
+  line-height:1.7;white-space:pre-wrap;word-break:break-word;color:var(--fg-muted);
+  background:var(--bg);
+}
+.log-view.mark{color:var(--fg)}
+
+/* ---- Toasts ------------------------------------------------------------------- */
+.toast-stack{
+  position:fixed;bottom:var(--s-5);right:var(--s-5);display:flex;flex-direction:column;
+  gap:var(--s-2);z-index:80;width:min(340px,calc(100vw - 40px));pointer-events:none;
+}
+.toast{
+  display:flex;align-items:center;gap:var(--s-3);padding:10px 10px 10px var(--s-4);
+  border:1px solid var(--border-subtle);border-radius:var(--radius-md);background:var(--surface-raised);
+  box-shadow:var(--shadow-md);font-size:var(--text-sm);line-height:1.5;
+  pointer-events:auto;animation:toast-in .18s ease;
+}
+.toast > svg.lucide{width:18px;height:18px}
+.toast.ok > svg.lucide{color:var(--green)}
+.toast.err > svg.lucide{color:var(--red)}
+.toast.info > svg.lucide{color:var(--fg-muted)}
+.toast .grow{flex:1;min-width:0;overflow-wrap:anywhere}
+.toast-close{
+  display:inline-flex;align-items:center;justify-content:center;flex:none;
+  width:32px;height:32px;padding:0;border:0;border-radius:var(--radius-xs);
+  background:transparent;color:var(--fg-muted);cursor:pointer;
+  transition:background .12s ease,color .12s ease;
+}
+.toast-close:hover{background:var(--surface-hover);color:var(--fg)}
+.toast-close:focus-visible{box-shadow:var(--focus-ring)}
+.toast-close svg.lucide{width:16px;height:16px}
+@keyframes toast-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.toast.leaving{opacity:0;transform:translateY(4px);transition:opacity .15s ease,transform .15s ease}
+
+/* ---- Dialogs -------------------------------------------------------------------- */
+.dialog-backdrop{
+  position:fixed;inset:0;z-index:70;background:rgba(8,8,8,.62);
+  -webkit-backdrop-filter:blur(6px) saturate(.8);backdrop-filter:blur(6px) saturate(.8);
+  display:grid;place-items:center;padding:var(--s-5);animation:fade-in .16s ease;
+}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+.dialog{
+  /* Tone colours: the icon badge, the top hairline and a destructive confirm
+   * button all read from these, so a tone is one variable swap. */
+  --tone:var(--accent);--tone-bg:var(--accent-bg);--tone-line:var(--accent-line);
+  position:relative;width:100%;max-width:460px;overflow:hidden;
+  border:1px solid var(--border-subtle);border-radius:var(--radius-lg);
+  background:var(--surface-raised);box-shadow:var(--shadow-lg);
+  animation:dialog-in .22s var(--ease-out);
+}
+.dialog::before{content:'';position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--tone-line),transparent);pointer-events:none}
+.dialog.tone-danger{--tone:var(--red);--tone-bg:var(--red-bg);--tone-line:var(--red-line)}
+@keyframes dialog-in{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.dialog,.dialog-backdrop{animation:none}}
+.dialog-head{display:flex;align-items:center;gap:var(--s-3);padding:var(--s-5) var(--s-5) 0}
+.dialog-head svg.lucide{color:var(--fg-muted)}
+.dialog .dialog-head .dialog-icon{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:var(--radius-sm);background:var(--tone-bg);box-shadow:inset 0 0 0 1px var(--tone-line)}
+.dialog .dialog-head .dialog-icon svg.lucide{width:17px;height:17px;color:var(--tone)}
+.dialog-head h2{font-size:var(--text-lg);font-weight:600;letter-spacing:-.01em;color:var(--fg);line-height:1.3}
+.dialog-head .grow{flex:1}
+.dialog-head > .btn.icon-only{align-self:flex-start;color:var(--fg-subtle)}
+.dialog-head > .btn.icon-only:hover{color:var(--fg)}
+.dialog-body{padding:var(--s-4) var(--s-5) var(--s-5);color:var(--fg-muted);font-size:var(--text-sm);line-height:1.6}
+.dialog-body p{margin:0 0 var(--s-3)}
+.dialog-body > :last-child{margin-bottom:0}
+.dialog-body .mono{font-family:var(--mono);color:var(--fg);word-break:break-all}
+.dialog-message{font-size:var(--text-md);color:#c4c4c4}
+.dialog-actions{
+  display:flex;justify-content:flex-end;gap:var(--s-2);padding:var(--s-3) var(--s-5);
+  border-top:1px solid rgba(255,255,255,.06);background:rgba(0,0,0,.16);
+}
+.dialog-actions .btn{height:34px;padding:0 var(--s-4)}
+.dialog .dialog-actions .btn.danger{background:var(--danger-solid);border-color:var(--danger-solid);color:#fff}
+.dialog .dialog-actions .btn.danger:hover:not(:disabled){background:var(--danger-solid-hover);border-color:var(--danger-solid-hover)}
+.dialog .dialog-actions .btn.danger:disabled{background:rgba(217,83,79,.18);border-color:rgba(217,83,79,.25);color:rgba(255,255,255,.55);opacity:1}
+/* Typed confirmation: the phrase is a chip, the field turns green on a match. */
+.dialog-confirm-field{display:flex;flex-direction:column;gap:var(--s-2);margin-top:var(--s-4);padding:var(--s-3);border-radius:var(--radius-md);background:var(--well);border:1px solid var(--border)}
+.dialog-confirm-field label{font-size:var(--text-sm);color:var(--fg-muted)}
+.dialog-body .dialog-phrase{display:inline-block;padding:1px 7px;border-radius:var(--radius-2xs);background:var(--tone-bg);color:var(--tone);font-size:12px;word-break:normal}
+.dialog-confirm-field .input::placeholder{color:#5c5c5c;font-family:var(--mono)}
+.dialog-confirm-field.is-match .input{border-color:var(--green);box-shadow:0 0 0 3px rgba(16,185,129,.18)}
+@media(max-width:600px){
+  .dialog-backdrop{align-items:end;padding:var(--s-3)}
+  .dialog-actions{flex-wrap:wrap}
+  .dialog-actions .btn{flex:1 1 auto}
+}
+
+/* ---- AI connection / active-pool workbench --------------------------------------- */
+.ai-pool{border-top:1px solid var(--border);padding-top:20px}
+.ai-pool-head{margin-bottom:12px}
+.ai-pool-head h3{font-size:13px}
+.ai-pool-list{display:flex;flex-direction:column;max-height:400px;overflow:auto;border:1px solid var(--border);border-radius:var(--radius-md);background:var(--bg);scrollbar-gutter:stable}
+.ai-pool-row{display:flex;align-items:center;gap:16px;min-width:0;padding:12px 14px;border-bottom:1px solid var(--border)}
+.ai-pool-row:last-child{border-bottom:0}
+.ai-pool-row:hover{background:var(--bg-subtle)}
+.ai-pool-row.is-default{background:rgba(37,99,235,.07);box-shadow:inset 2px 0 var(--accent)}
+.ai-model-id{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1;overflow-wrap:anywhere;font-size:12px}
+.ai-model-name{font-weight:500;color:var(--fg);line-height:1.5}
+.ai-model-provider{font-size:11px;color:var(--fg-subtle)}
+.ai-pool-actions{display:flex;align-items:center;gap:12px;flex:none}
+.ai-default-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:var(--radius-2xs);background:rgba(122,170,255,.1);color:#a9c8ff;font-size:11px;font-weight:500}
+.ai-pool-remove{color:var(--fg-subtle)}
+.ai-pool-remove:hover{color:var(--red);background:rgba(240,128,128,.08)}
+.ai-pool-row .btn{flex:none}
+.ai-pool-empty{display:grid;justify-items:center;gap:8px;padding:28px 16px;text-align:center;border:1px dashed var(--border-strong);border-radius:var(--radius-sm)}
+.ai-pool-empty>.lucide{font-size:24px;color:var(--fg-subtle)}
+.ai-pool-empty p{margin:0;max-width:400px}
+.ai-pool>p{margin:12px 0 0}
+.dialog.ai-model-dialog{max-width:720px;max-height:calc(100dvh - 40px);display:flex;flex-direction:column;overflow:hidden}
+.ai-model-dialog .dialog-body{display:flex;flex-direction:column;gap:12px;overflow-y:auto;min-height:0}
+.ai-model-dialog .dialog-head{padding:20px;flex:none}
+.ai-model-dialog .dialog-head .btn svg.lucide{color:var(--fg-muted)}
+.ai-model-dialog .dialog-head>.lucide{color:var(--fg-muted)}
+.ai-model-dialog .dialog-actions{padding-top:12px;border-top:1px solid var(--border);flex:none}
+.ai-model-dialog .dialog-body p{margin:0}
+.ai-catalog-source{display:flex;align-items:center;gap:16px;padding:14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.ai-catalog-source>.btn{flex:none}
+.ai-connection-caption{display:flex;flex:1;min-width:0;flex-direction:column;gap:4px;font-size:11px;overflow-wrap:anywhere}
+.ai-source-label{color:var(--fg);font-size:12px;font-weight:500}
+.ai-catalog-toolbar{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.ai-model-dialog .error-text:empty{display:none}
+.ai-catalog-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:160px;padding:24px;text-align:center}
+.ai-catalog-empty>.lucide{width:26px;height:26px;color:var(--fg-subtle)}
+.ai-catalog-empty strong{color:var(--fg);font-weight:500}
+.ai-discovery-list{min-height:100px;max-height:280px;overflow:auto;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);flex-shrink:0}
+.ai-discovery-list>p{padding:18px}
+.ai-model-option{display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;min-width:0}
+.ai-model-option+.ai-model-option{border-top:1px solid var(--border)}
+.ai-model-option:hover{background:var(--surface)}
+.ai-model-option:has([aria-checked="true"]){background:rgba(122,170,255,.06)}
+.ai-model-option .mono{min-width:0;flex:1;overflow-wrap:anywhere;font-size:12px}
+.ai-manual{padding-top:12px;border-top:1px solid var(--border)}
+.ai-manual .row>.input{flex:1;min-width:120px}
+
+/* ---- System prompt / CatWeb documentation knowledge base ------------------- */
+.docs-block{border-top:1px solid var(--border);padding-top:20px;display:flex;flex-direction:column;gap:12px}
+.docs-toggle{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:var(--text-sm)}
+.docs-toggle>span{color:var(--fg)}
+.docs-search-row>.input{flex:1;min-width:160px}
+.docs-results{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.docs-results>.hint,.docs-results>.error-text{margin:0}
+.docs-result{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.docs-result .row{gap:var(--s-2)}
+.docs-path{font-size:11px;color:var(--fg-muted);overflow-wrap:anywhere}
+.docs-snippet{margin:0;font-family:var(--mono);font-size:var(--text-xs);line-height:1.6;color:var(--fg-muted);white-space:pre-wrap;overflow-wrap:anywhere;max-height:180px;overflow:auto}
+#docs-status{margin:0}
+@media(max-width:480px){
+  .ai-catalog-source{align-items:stretch;flex-direction:column;gap:12px}
+  .ai-model-dialog{max-height:calc(100dvh - 24px)}
+  .ai-model-dialog .dialog-body{padding-inline:14px}
+  .ai-model-dialog .dialog-head{padding-inline:14px}
+  .ai-pool-row{flex-wrap:wrap}
+  .ai-pool-row .ai-model-id{flex-basis:100%}
+  .ai-pool-actions{margin-left:auto}
+}
+
+/* ---- Setup ------------------------------------------------------------------------ */
+.setup-list{list-style:none;margin:0 0 var(--s-2);padding:0;display:flex;flex-direction:column;gap:var(--s-2)}
+.setup-list li{display:flex;gap:var(--s-2);align-items:flex-start;font-size:var(--text-sm);color:var(--fg-muted)}
+.setup-list svg.lucide{width:14px;height:14px;margin-top:3px;color:var(--fg-subtle)}
+
+/* ---- Responsive: the sidebar becomes an overlay drawer -------------------- */
+/* Below 720px the sidebar leaves the flow entirely. It slides over the page
+ * with a blurred backdrop instead of pushing a horizontal tab rail above the
+ * content: the page underneath is never re-laid-out, so no panel is squeezed
+ * to make room for navigation. Its open state is remembered (ui.js). */
+@media (max-width:720px){
+  .shell{flex-direction:column}
+  .sidebar{
+    position:fixed;left:0;top:0;bottom:0;z-index:22;
+    width:min(84vw,300px);height:auto;max-height:100dvh;
+    border-right:1px solid var(--border-strong);border-bottom:0;
+    background:var(--sidebar);
+    transform:translateX(-102%);visibility:hidden;
+    transition:transform .18s ease,visibility .18s ease;
+    box-shadow:24px 0 60px rgba(0,0,0,.55);
+  }
+  .drawer-open .sidebar{transform:none;visibility:visible}
+  .nav-backdrop{
+    position:fixed;inset:0;z-index:21;background:rgba(16,16,16,.55);
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    animation:fade-in .14s ease;
+  }
+  body.drawer-locked{overflow:hidden}
+  .topbar-menu{display:inline-flex}
+  .sidebar-head{padding:14px 12px 8px}
+  .sidebar-icon-btn{display:none}
+  .sidebar-icon-btn.drawer-close{display:inline-flex}
+  .tab{min-height:36px}
+  .sidebar-footer{margin-top:auto;padding:8px 10px;border-top:1px solid var(--border);flex-direction:column;align-items:stretch;gap:10px}
+  .sidebar-footer .btn{margin-left:0}
+  .sidebar-connection{display:flex}
+  .topbar{padding:0 12px;gap:var(--s-2)}
+  .breadcrumb{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .main{padding:18px 14px 40px}
+  .main.has-save-bar{padding-bottom:calc(49px + var(--s-5) + env(safe-area-inset-bottom,0px))}
+  /* Full-bleed bar: the fixed save bar spans the viewport, not the rail. */
+  .save-bar{left:0;right:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px))}
+  .save-bar .grow{display:none}
+  .save-bar .save-bar-copy{flex:1}
+  .save-bar .btn{flex:1 0 auto;justify-content:center}
+  .cell-actions .btn span{display:none}
+  .cell-actions .btn{width:28px;justify-content:center;padding:0}
+  .cell-actions .btn + .btn{margin-left:var(--s-1)}
+}
+
+/* ---- Boot report ----------------------------------------------------------
+   The guard's report, painted when the frontend never took over. It stays a
+   plain left-aligned block of diagnostics — it can be long, and it is read, not
+   looked at. The start-up text in index.html is styled with the gate. */
+.boot-report{max-width:720px;margin:0 auto;padding:var(--s-12) var(--s-6);display:flex;flex-direction:column;gap:var(--s-3)}
+.boot-report-title{margin:0;font-size:var(--text-lg);font-weight:600;color:var(--fg)}
+.boot-report-lede{margin:0;font-size:var(--text-sm);color:var(--fg-muted)}
+.boot-report-heading{margin:var(--s-4) 0 0;font-size:var(--text-md);font-weight:600;color:var(--fg)}
+.boot-report-list{margin:0;padding-left:var(--s-5);display:flex;flex-direction:column;gap:var(--s-2);font-size:var(--text-sm);color:var(--fg-muted)}
+.boot-report-problem{color:var(--red)}
+.boot-report-diag{font-family:var(--mono);font-size:var(--text-xs);word-break:break-all;color:var(--fg-subtle)}
+.boot-report-actions{margin-top:var(--s-4);display:flex;gap:var(--s-2)}
+
+/* ---- About ----------------------------------------------------------------
+   About answers questions about the installation, not about a domain: which
+   build, where it lives, how it is updated, whether it is healthy, and how
+   configuration and data move in and out. The page is a stack of panels, one
+   per question, so a reader can stop at the one they came for. */
+.about-stack{gap:20px}
+.about-section{margin:0}
+.about-section-title{font-size:var(--text-sm);font-weight:600;margin-bottom:var(--s-1)}
+.about-lede{margin:0 0 var(--s-4);color:var(--fg-muted);font-size:var(--text-sm)}
+
+/* ---- Fact list: label/value pairs, monospaced values --------------------- */
+.fact-list{display:grid;grid-template-columns:minmax(120px,auto) minmax(0,1fr);gap:8px var(--s-4);margin:0}
+.fact{display:contents}
+.fact dt{font-size:var(--text-xs);color:var(--fg-muted);padding-top:1px}
+.fact dd{margin:0;font-size:var(--text-xs);overflow-wrap:anywhere}
+.fact dd.mono{font-family:var(--mono)}
+
+/* ---- Switch rows: one setting, its name, its consequence ---------------- */
+.switch-row{display:flex;align-items:flex-start;gap:var(--s-3);cursor:pointer;padding:var(--s-2) 0}
+.switch-row > .t-check{margin:2px 0 0;flex:none}
+.switch-copy{display:flex;flex-direction:column;gap:2px;min-width:0}
+.switch-name{font-size:var(--text-sm);font-weight:500;color:var(--fg)}
+.switch-copy .hint{margin-top:0}
+.switch-row:hover .switch-name{color:var(--fg)}
+.startup-options{display:flex;flex-direction:column;gap:0}
+.startup-options .switch-row{padding:6px 0;gap:var(--s-2)}
+.startup-options input{margin:2px 0 0;flex:none}
+.startup-options .hint{font-size:12px;line-height:1.4}
+
+/* ---- Release state line ------------------------------------------------- */
+.release-state{display:flex;flex-direction:column;gap:var(--s-1)}
+.release-line{margin:0;font-size:var(--text-sm);font-weight:500}
+.release-line.ok{color:var(--green)}
+.release-line.warn{color:var(--amber)}
+.release-line.err{color:var(--red)}
+.release-line.idle{color:var(--fg-muted)}
+.release-state .hint{margin-top:0}
+
+/* ---- Diagnostics ------------------------------------------------------- */
+.doctor-summary{gap:var(--s-2)}
+.chip.doctor-ok{color:var(--green)}
+.chip.doctor-warn{color:var(--amber)}
+.chip.doctor-fail{color:var(--red)}
+.doctor-list{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden}
+.doctor-row{display:grid;grid-template-columns:44px minmax(90px,150px) minmax(0,1fr);gap:var(--s-3);padding:8px var(--s-3);font-size:var(--text-xs);align-items:baseline}
+.doctor-row + .doctor-row{border-top:1px solid var(--border)}
+.doctor-status{font-family:var(--mono);font-weight:600;font-size:10px;letter-spacing:.04em}
+.doctor-status.ok{color:var(--green)}
+.doctor-status.warn{color:var(--amber)}
+.doctor-status.fail{color:var(--red)}
+.doctor-name{color:var(--fg-muted)}
+.doctor-detail{color:var(--fg-subtle);overflow-wrap:anywhere}
+/* What a repair run changed: one line per closed difference, in the same muted
+   mono the diagnostic details use, so the two read as one report. */
+.doctor-repairs{display:flex;flex-direction:column;gap:6px}
+.repair-list{margin:0;padding:0 0 0 18px;list-style:disc;font-size:var(--text-xs);color:var(--fg-subtle)}
+.repair-list li{overflow-wrap:anywhere}
+.repair-name{color:var(--fg-muted);margin-right:6px}
+
+/* ---- Resources & Links ---------------------------------------------------
+   The card of the reference layout: one row per destination, an icon on the
+   leading edge, a title with its one-line description, and the outward arrow
+   that says "this leaves the console". */
+.link-list{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;background:var(--surface)}
+.link-row{display:flex;align-items:center;gap:var(--s-3);padding:14px var(--s-4);color:inherit;text-decoration:none}
+.link-row + .link-row{border-top:1px solid var(--border)}
+.link-row:hover{background:var(--surface-hover);text-decoration:none}
+.link-icon{display:inline-flex;align-items:center;justify-content:center;width:20px;color:var(--fg)}
+.link-icon svg.lucide{width:18px;height:18px}
+.link-copy{display:flex;flex-direction:column;gap:1px;min-width:0;flex:1}
+.link-title{font-size:var(--text-sm);font-weight:600;color:var(--fg)}
+.link-note{font-size:var(--text-xs);color:var(--fg-subtle)}
+.link-go{display:inline-flex;color:var(--fg-subtle)}
+.link-go svg.lucide{width:15px;height:15px}
+.link-row:hover .link-go{color:var(--fg)}
+
+/* ---- Export & import ---------------------------------------------------- */
+.transfer-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.transfer-card{min-width:0;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--bg-subtle);padding:0;display:flex;flex-direction:column;gap:0}
+.transfer-card>.panel-body{flex:1;gap:16px}
+.transfer-card>.panel-body>.hint{margin:0}
+.transfer-settings,.transfer-card.bundle{grid-column:1 / -1}
+.transfer-card.bundle{border-color:var(--border-strong);background:var(--bg-subtle)}
+.transfer-head{display:flex;align-items:flex-start;gap:var(--s-3)}
+.transfer-icon{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;flex:none;border:1px solid var(--border);border-radius:var(--radius-md);background:var(--surface);color:var(--fg-muted)}
+.transfer-icon svg.lucide{width:15px;height:15px}
+.transfer-copy{min-width:0;flex:1}
+.transfer-format{flex:none;font:10px var(--mono);color:var(--fg-muted);border:1px solid var(--border-strong);border-radius:var(--radius-2xs);padding:3px 6px}
+.transfer-copy h4{margin:0;font-size:var(--text-sm);font-weight:600}
+.transfer-copy .hint{margin:2px 0 0;overflow-wrap:anywhere}
+.transfer-card .field > .row{gap:var(--s-2)}
+.transfer-card .group-label{font-size:var(--text-sm);font-weight:500;color:var(--fg)}
+.transfer-actions{margin-top:auto;padding-top:16px;border-top:1px solid var(--border);gap:var(--s-2)}
+.transfer-card > .hint{margin:0}
+.transfer-card .hint{line-height:1.6}
+.transfer-card .check-grid{gap:0;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);overflow:hidden}
+.transfer-card .check-row{padding:11px 12px;gap:10px}
+.transfer-card .check-row:hover{background:var(--surface)}
+.transfer-card .check-row:has([aria-checked="true"]){background:rgba(122,170,255,.035)}
+.transfer-card .check-grid.domain-list{padding:0;overflow-y:auto}
+.transfer-card .switch-row{margin:0;padding:12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);align-items:flex-start}
+.transfer-card .switch-row:has(#export-secrets[aria-checked="true"]){border-color:var(--amber)}
+.transfer-card .switch-copy{min-width:0}
+.transfer-card .field{gap:10px}
+.transfer-card.bundle>.panel-body>.field{max-width:480px;width:100%}
+@media(max-width:900px){.transfer-grid{grid-template-columns:minmax(0,1fr)}}
+.check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px var(--s-4)}
+.check-grid.domain-list{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));max-height:190px;overflow-y:auto;padding-right:var(--s-1)}
+.check-row{display:flex;align-items:flex-start;gap:10px;cursor:pointer;min-width:0}
+.check-row > .t-check{margin:2px 0 0;flex:none}
+.check-copy{display:flex;flex-direction:column;gap:1px;min-width:0}
+.check-name{font-size:var(--text-sm);overflow-wrap:anywhere}
+.check-copy .hint{margin-top:0}
+.file-input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.import-control{display:inline-flex}
+
+/* ---- Transfer result notice -------------------------------------------- */
+.notice{display:flex;flex-wrap:wrap;align-items:flex-start;gap:var(--s-2);padding:var(--s-3) var(--s-4);margin-bottom:var(--s-3);border:1px solid var(--border);border-radius:var(--radius-md);background:var(--bg-subtle);font-size:var(--text-xs)}
+.notice svg.lucide{width:15px;height:15px;margin-top:2px}
+.notice.ok svg.lucide{color:var(--green)}
+.notice.err svg.lucide{color:var(--red)}
+.notice-copy{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.notice-copy .hint{margin-top:0;overflow-wrap:anywhere}
+.notice-line{flex:1 0 100%;margin:0;color:var(--fg-muted);overflow-wrap:anywhere}
+
+@media (max-width:720px){
+  /* One column: a two-column checkbox grid is unreadable on a phone, and the
+     fact list would squeeze its values into a sliver. */
+  .check-grid{grid-template-columns:minmax(0,1fr)}
+  .fact-list{grid-template-columns:minmax(0,1fr);gap:2px 0}
+  .fact{margin-bottom:var(--s-2)}
+  .doctor-row{grid-template-columns:42px minmax(0,1fr)}
+  .doctor-detail{grid-column:1 / -1}
+  .transfer-actions .btn{flex:1 0 auto;justify-content:center}
+}
+
+button[aria-busy="true"] svg[data-icon="refresh-cw"] { animation: spin .9s linear infinite; transform-origin: center; }
+@media (prefers-reduced-motion: reduce) {
+  button[aria-busy="true"] svg[data-icon="refresh-cw"] { animation: none; }
+}
+
+/* Semantic icon motion: fixed outlines, animated controls/data within them. */
+@keyframes nav-slider-top { 0%,100%{transform:translateX(0)} 45%,60%{transform:translateX(10px)} }
+@keyframes nav-slider-bottom { 0%,100%{transform:translateX(0)} 45%,60%{transform:translateX(-10px)} }
+@keyframes nav-rail-top { 0%,100%{d:path('M4 7h0 M10 7h10')} 45%,60%{d:path('M4 7h10 M20 7h0')} }
+@keyframes nav-rail-bottom { 0%,100%{d:path('M4 17h10 M20 17h0')} 45%,60%{d:path('M4 17h0 M10 17h10')} }
+@keyframes nav-bar-a { 0%,100%{d:path('M8 16v-5')} 35%{d:path('M8 16v-11')} 70%{d:path('M8 16v-7')} }
+@keyframes nav-bar-b { 0%,100%{d:path('M13 16V7')} 40%{d:path('M13 16V11')} 75%{d:path('M13 16V5')} }
+@keyframes nav-bar-c { 0%,100%{d:path('M18 16V4')} 30%{d:path('M18 16V8')} 65%{d:path('M18 16V12')} }
+@keyframes nav-tile-a { 0%,100%{d:path('M3 3h7v9H3z')} 45%,60%{d:path('M3 3h7v5H3z')} }
+@keyframes nav-tile-b { 0%,100%{d:path('M14 3h7v5h-7z')} 45%,60%{d:path('M14 3h7v9h-7z')} }
+@keyframes nav-tile-c { 0%,100%{d:path('M14 12h7v9h-7z')} 45%,60%{d:path('M14 16h7v5h-7z')} }
+@keyframes nav-tile-d { 0%,100%{d:path('M3 16h7v5H3z')} 45%,60%{d:path('M3 12h7v9H3z')} }
+@keyframes nav-cell-scan { 0%,100%{opacity:0;transform:translate(0,0)} 15%,30%{opacity:.65;transform:translate(0,0)} 45%{opacity:.65;transform:translate(9px,0)} 65%{opacity:.65;transform:translate(9px,6px)} 85%{opacity:.65;transform:translate(0,12px)} }
+@keyframes nav-data-flow { 0%,100%{stroke-dasharray:60 0;stroke-dashoffset:0;opacity:1} 35%{stroke-dasharray:8 4;stroke-dashoffset:0;opacity:.65} 70%{stroke-dasharray:8 4;stroke-dashoffset:-24;opacity:1} }
+@keyframes nav-write { 0%,100%{stroke-dashoffset:0} 35%{stroke-dashoffset:6} 80%{stroke-dashoffset:0} }
+@keyframes nav-info { 0%,100%{opacity:1} 40%{opacity:.35} }
+@media(prefers-reduced-motion:no-preference) {
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="settings-2"] circle:nth-child(4) { animation:nav-slider-top 1100ms cubic-bezier(.4,0,.2,1); }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="settings-2"] circle:nth-child(3) { animation:nav-slider-bottom 1100ms cubic-bezier(.4,0,.2,1); }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="settings-2"] path:nth-child(1) { animation:nav-rail-top 1100ms cubic-bezier(.4,0,.2,1); }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="settings-2"] path:nth-child(2) { animation:nav-rail-bottom 1100ms cubic-bezier(.4,0,.2,1); }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="table"] .nav-cell { animation:nav-cell-scan 1100ms cubic-bezier(.4,0,.2,1); }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="database"] path { animation:nav-data-flow 1100ms cubic-bezier(.4,0,.2,1); }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="scroll-text"] path:nth-child(-n+2) { animation:nav-write 1100ms cubic-bezier(.4,0,.2,1); }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="info"] path { animation:nav-info 1100ms cubic-bezier(.4,0,.2,1); }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="chart-column"] path:nth-child(2) { animation:nav-bar-a 1100ms cubic-bezier(.4,0,.2,1); }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="chart-column"] path:nth-child(3) { animation:nav-bar-b 1100ms cubic-bezier(.4,0,.2,1); }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="chart-column"] path:nth-child(4) { animation:nav-bar-c 1100ms cubic-bezier(.4,0,.2,1); }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="layout-dashboard"] path:nth-child(1) { animation:nav-tile-a 1100ms cubic-bezier(.4,0,.2,1); }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="layout-dashboard"] path:nth-child(2) { animation:nav-tile-b 1100ms cubic-bezier(.4,0,.2,1); }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="layout-dashboard"] path:nth-child(3) { animation:nav-tile-c 1100ms cubic-bezier(.4,0,.2,1); }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="layout-dashboard"] path:nth-child(4) { animation:nav-tile-d 1100ms cubic-bezier(.4,0,.2,1); }
+.sidebar-nav svg[data-icon="scroll-text"] path:nth-child(-n+2){stroke-dasharray:6;}
+.sidebar-nav svg[data-icon="scroll-text"] path:nth-child(2){animation-delay:100ms;}
+}
+
+/* Context navigation: service activity, drive lights, eyes and connector pins. */
+@keyframes nav-list { 0%,100%{stroke-dashoffset:0} 40%{stroke-dashoffset:13} 85%{stroke-dashoffset:0} }
+@keyframes nav-led { 0%,100%{opacity:1} 25%,65%{opacity:.15} 45%,80%{opacity:1} }
+@keyframes nav-blink { 0%,30%,65%,100%{d:path('M15 13v2')} 45%,50%{d:path('M14 14h2')} }
+@keyframes nav-blink-left { 0%,30%,65%,100%{d:path('M9 13v2')} 45%,50%{d:path('M8 14h2')} }
+@keyframes nav-key-turn { 0%,100%{transform:rotate(0deg)} 40%,60%{transform:rotate(-20deg)} }
+@keyframes nav-connect { 0%,100%{transform:translate(0,0)} 45%,60%{transform:translate(-1.5px,-1.5px)} }
+@keyframes nav-alert { 0%,100%{opacity:1} 45%{opacity:.25} }
+@keyframes nav-back { 0%,100%{transform:translateX(0)} 45%{transform:translateX(-2px)} }
+@keyframes nav-play { 0%,100%{transform:translateX(0)} 45%,60%{transform:translateX(2px)} }
+@keyframes nav-forward { 0%,100%{transform:translateX(0)} 45%,60%{transform:translateX(2px)} }
+@keyframes nav-diagnose { 0%,100%{transform:scale(1)} 45%,60%{transform:scale(1.35)} }
+@keyframes nav-compass { 0%,100%{transform:rotate(0deg)} 45%,60%{transform:rotate(45deg)} }
+@media(prefers-reduced-motion:no-preference) {
+.sidebar-nav :is(.tab,.section-item,.section-back):is(:hover,:focus-visible) svg[data-icon="list"] line:nth-child(-n+3) { animation:nav-list 1000ms cubic-bezier(.4,0,.2,1); stroke-dasharray:13; }
+.sidebar-nav :is(.tab,.section-item,.section-back):is(:hover,:focus-visible) svg[data-icon="hard-drive"] line:nth-last-child(-n+2) { animation:nav-led 1000ms cubic-bezier(.4,0,.2,1);  }
+.sidebar-nav :is(.tab,.section-item,.section-back):is(:hover,:focus-visible) svg[data-icon="bot"] path:nth-child(5) { animation:nav-blink 1000ms cubic-bezier(.4,0,.2,1);  }
+.sidebar-nav :is(.tab,.section-item,.section-back):is(:hover,:focus-visible) svg[data-icon="bot"] path:nth-child(6) { animation:nav-blink-left 1000ms cubic-bezier(.4,0,.2,1);  }
+.sidebar-nav :is(.tab,.section-item,.section-back):is(:hover,:focus-visible) svg[data-icon="key-round"] g { animation:nav-key-turn 1000ms cubic-bezier(.4,0,.2,1); transform-origin:16.5px 7.5px; }
+.sidebar-nav :is(.tab,.section-item,.section-back):is(:hover,:focus-visible) svg[data-icon="unplug"] path:nth-child(n+6) { animation:nav-connect 1000ms cubic-bezier(.4,0,.2,1);  }
+.sidebar-nav :is(.tab,.section-item,.section-back):is(:hover,:focus-visible) svg[data-icon="circle-alert"] line { animation:nav-alert 1000ms cubic-bezier(.4,0,.2,1);  }
+.sidebar-nav :is(.tab,.section-item,.section-back):is(:hover,:focus-visible) svg[data-icon="arrow-left"] g { animation:nav-back 1000ms cubic-bezier(.4,0,.2,1);  }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="play"] path { animation:nav-play 1000ms cubic-bezier(.4,0,.2,1); }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="arrow-right"] path { animation:nav-forward 1000ms cubic-bezier(.4,0,.2,1); }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="stethoscope"] circle { animation:nav-diagnose 1000ms cubic-bezier(.4,0,.2,1); transform-origin:20px 10px; }
+.sidebar-nav :is(.tab,.section-item):is(:hover,:focus-visible) svg[data-icon="compass"] polygon { animation:nav-compass 1000ms cubic-bezier(.4,0,.2,1); transform-origin:12px 12px; }
+.sidebar-nav svg[data-icon="list"] line:nth-child(2){animation-delay:90ms;}
+.sidebar-nav svg[data-icon="list"] line:nth-child(3){animation-delay:180ms;}
+.sidebar-nav svg[data-icon="hard-drive"] line:last-child{animation-delay:140ms;}
+}
+
+.setup-access-list{border:1px solid var(--border);border-radius:var(--radius-md);background:var(--bg)}
+.setup-access-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px}
+.setup-access-row+.setup-access-row{border-top:1px solid var(--border)}
+.setup-access-row>label{min-width:0;overflow-wrap:anywhere}
+.setup-access-row>.btn{flex:none}
+.k-floating-select .k-option-copy{white-space:normal;overflow-wrap:anywhere}
+
+.command-detail{margin-left:auto;max-width:45%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--fg-subtle);font-size:var(--text-xs);flex-shrink:0}
+
+.sidebar-session-actions{display:flex;align-items:center;gap:6px;min-width:0}
+.sidebar-session-actions>.btn:first-child{flex:1;min-width:0}
+.sidebar-session-actions>.btn.icon-only{flex:none;width:28px;padding:0;justify-content:center}
+.sidebar.is-collapsed .sidebar-session-actions{flex-direction:column}
+.sidebar.is-collapsed .sidebar-session-actions>.btn:first-child{flex:none}
