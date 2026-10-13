@@ -1,0 +1,65 @@
+CWBridge Proprietary Use License
+Version 1.0
+
+Copyright (c) 2026 CWBridge contributors. All rights reserved.
+
+1. Scope
+
+This license applies to CWBridge material owned by its copyright holders,
+including the application core, executable distributions, first-party launcher,
+web interface, and protected project artifacts. CWBridge is proprietary software;
+making interface source files publicly readable does not make it open source.
+
+2. Permitted use
+
+You may, without a license fee, install and use official CWBridge distributions
+for personal or commercial purposes on devices you own or are authorized to use.
+You may make copies reasonably required for that use and for backup. You may
+read the publicly provided interface and launcher sources and modify them for
+your own use. You may share complete, unchanged official distributions if this
+license and all applicable copyright and third-party notices remain included.
+These permissions do not grant trademark rights or any right to claim ownership.
+
+3. Protection of the core
+
+Except where mandatory applicable law permits it, or where a copyright holder
+has given written authorization, you must not reverse engineer, decompile,
+disassemble, decode, decrypt, or extract the core or protected project artifacts
+to recover their implementation or source code. You must not circumvent their
+technical protection for that purpose, publish recovered implementation material,
+or distribute modified core binaries or works copying that protected implementation.
+Redistribution of modified first-party source or modified distributions requires
+the copyright holders' separate permission.
+
+4. Mandatory legal rights
+
+Nothing in this license excludes rights that applicable law makes non-waivable.
+In particular, rights to make necessary backup copies, to observe, study or test
+software during authorized use, to carry out legally permitted error correction,
+and to perform qualifying decompilation for interoperability remain unaffected.
+Where German law applies, this includes the relevant rights under sections 69d
+and 69e UrhG and the limits on contractual restrictions in section 69g(2) UrhG.
+This license does not prohibit independently developed software that does not
+copy CWBridge's protected expression or otherwise infringe its rights.
+
+5. Third-party components
+
+Third-party components, fonts, icons, libraries and other material remain subject
+to their own licenses. Their license terms and legally required notices take
+precedence for that material; this license does not restrict rights granted by
+those third-party licenses. Keep their applicable notices with any distribution.
+
+6. Warranty and liability
+
+To the extent permitted by applicable law, CWBridge is provided as is, without
+additional contractual warranties of uninterrupted operation or fitness for a
+particular purpose. Nothing here excludes liability that cannot lawfully be
+excluded, including liability for intent, gross negligence, injury to life,
+body or health, or mandatory consumer or product-liability rights. Mandatory
+statutory remedies remain unaffected.
+
+7. Other permissions
+
+Rights not expressly granted here are reserved. The copyright holders may grant
+additional permissions separately. A legally unenforceable restriction does not
+remove mandatory rights or expand the other restrictions beyond what law permits.
