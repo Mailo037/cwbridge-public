@@ -70,6 +70,11 @@ const API = {
   accessStatus: 'api/access/status',
   accessPassword: 'api/access/password',
   accessGenerated: 'api/access/generated',
+  remoteStatus: 'api/remote/status',
+  remoteInstall: 'api/remote/install',
+  remoteStart: 'api/remote/start',
+  remoteStop: 'api/remote/stop',
+  remoteAutoStart: 'api/remote/auto-start',
   about:     'api/about',
   webStop: 'api/web/stop',
   aboutUpdate: 'api/about/update',
@@ -389,4 +394,4 @@ function stopPolling() {
   document.removeEventListener('visibilitychange', refreshVisibleStatus);
 }
 
-export { API, UnauthorizedError, api, authSession, discardCachedState, downloadUrl, fetchState, getBasePath, newAboutState, newSettingsBackupsState, pollStatus, setBasePath, startDownload, startPolling, state, stopPolling, toBase64 };
+export { API, UnauthorizedError, api, applyState, authSession, discardCachedState, downloadUrl, fetchState, getBasePath, newAboutState, newSettingsBackupsState, pollStatus, setBasePath, startDownload, startPolling, state, stopPolling, toBase64 };

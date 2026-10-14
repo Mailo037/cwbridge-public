@@ -155,11 +155,38 @@ async function runUpdate(action) {
   about.updateAction = action;
   about.notice = null;
   await repaint();
+  let progressTimer = null;
+  if (action === 'install') {
+    stopPolling();
+    state.view = 'updating';
+    const detail = h('p', { role: 'status', text: 'Checking the package registry…' });
+    const elapsed = h('p', { class: 'hint', text: 'Elapsed: 0 seconds' });
+    const started = Date.now();
+    document.getElementById('app').replaceChildren(h('main', { class: 'main' },
+      h('h1', { text: 'Updating CWBridge' }),
+      h('progress', { 'aria-label': 'Update in progress', style: 'width:100%;max-width:480px' }),
+      detail, elapsed, h('p', { class: 'hint', text: 'The console will restart and reload automatically after the installation is verified.' })));
+    let polling = false;
+    progressTimer = setInterval(async () => {
+      elapsed.textContent = 'Elapsed: ' + Math.floor((Date.now() - started) / 1000) + ' seconds';
+      if (polling) return;
+      polling = true;
+      try {
+        const response = await fetch(getBasePath() + API.status, { credentials: 'same-origin', cache: 'no-store', signal: AbortSignal.timeout(2000) });
+        if (response.ok) {
+          const next = await response.json();
+          if (next.update_progress?.message) detail.textContent = next.update_progress.message;
+        }
+      } catch (_) { /* Restart temporarily closes the listener. */ }
+      finally { polling = false; }
+    }, 1000);
+  }
   let message = null;
   let kind = 'ok';
   try {
     const result = await api(API.aboutUpdate, { method: 'POST', body: { action } });
     if (result.web_restarting) {
+      clearInterval(progressTimer);
       await waitForConsoleRestart(result.instance, result.latest);
       return;
     }
@@ -184,7 +211,13 @@ async function runUpdate(action) {
     message = failure(err, 'The release check failed.');
     kind = 'err';
   }
+  clearInterval(progressTimer);
   about.updateBusy = false;
+  if (action === 'install') {
+    state.view = 'app';
+    const { startPolling } = await import('../core.js');
+    startPolling();
+  }
   await repaint();
   if (message) toast(message, kind);
 }
@@ -193,9 +226,9 @@ async function waitForConsoleRestart(previous, version) {
   stopPolling();
   state.view = 'restarting';
   const message = h('p', { role: 'status', text: 'Installed v' + version + '. Restarting the web console…' });
-  const retry = h('button', { class: 'btn', type: 'button', hidden: true, onclick: () => location.reload() }, 'Reconnect');
-  document.getElementById('app').replaceChildren(h('main', { class: 'main' }, h('h1', { text: 'Restarting web console' }), message, retry));
-  for (let attempt = 0; attempt < 60; attempt++) {
+  const retry = h('button', { class: 'btn', type: 'button', hidden: true, onclick: () => waitForConsoleRestart(previous, version) }, 'Retry connection');
+  document.getElementById('app').replaceChildren(h('main', { class: 'main' }, h('h1', { text: 'Restarting web console' }), h('progress', { 'aria-label': 'Waiting for updated console', style: 'width:100%;max-width:480px' }), message, retry));
+  for (let attempt = 0; attempt < 150; attempt++) {
     await new Promise(resolve => setTimeout(resolve, 1000));
     try {
       const response = await fetch(getBasePath() + API.status, { credentials: 'same-origin', cache: 'no-store', signal: AbortSignal.timeout(2000) });

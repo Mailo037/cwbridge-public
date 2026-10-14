@@ -263,6 +263,7 @@ async function refreshConsole() {
 }
 
 function renderApp() {
+  if (state.view === 'updating' || state.view === 'restarting') return;
   syncRoute();
   const root = document.getElementById('app');
   const focusId = document.activeElement && document.activeElement.id ? document.activeElement.id : null;

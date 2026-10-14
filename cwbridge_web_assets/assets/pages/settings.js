@@ -6,7 +6,7 @@
  * opening "AI & models" does not lose the first edit — the sticky save bar,
  * which every section carries, is what commits it. */
 import { API, UnauthorizedError, api, state } from '../core.js';
-import { checkBox, confirmDialog, copyField, customSelect, emptyState, fmtMB, h, icon, openDialog, setPopText, spinnerRow, toast, actionMenu } from '../ui.js';
+import { checkBox, confirmDialog, copyField, customSelect, emptyState, enter, fmtMB, h, icon, leave, openDialog, setPopText, spinner, spinnerRow, toast, actionMenu } from '../ui.js';
 import { discardSettings, saveSettings, secretFlags, settingsDirtySections, settingsSectionDirty } from '../settings-model.js';
 import { applySaved, diagnose, diagnosisButton, liveApply } from '../operations.js';
 import { handleUnauthorized } from '../auth.js';
@@ -1194,9 +1194,11 @@ function settingsSecretsSection(main) {
   main.append(sectionHead('Credentials', 'Secrets the bridge stores for you — they are never read back into the browser.'));
   main.append(h('div', { class: 'stack' }, panel,
     h('div', { class: 'hint', text: 'The AI API key lives with its connection on “AI & models”.' }),
+    remotePanel(),
     accessPanel(),
     settingsSaveBar('Credentials are stored encrypted; rotating one needs a bridge restart.')));
   if (!state.access.loaded && !state.access.loading) queueMicrotask(loadAccessStatus);
+  if (!remoteStore().loaded && !remoteStore().busy) queueMicrotask(() => remoteAction(API.remoteStatus, 'status'));
 }
 
 /* ---- Console access (Settings → Credentials) ---------------------------- */
@@ -1390,6 +1392,173 @@ function accessPanel() {
     h('div', { class: 'panel-head' }, h('h3', { text: 'Console access' }), h('span', { class: 'grow' }),
       h('span', { class: 'panel-note', text: 'cwbridge web' })),
     body);
+}
+
+/* ---- Remote access (Settings → Credentials) ----------------------------- */
+
+/* A Cloudflare quick tunnel to this console: a public https address, no port
+ * forwarding. Action state only, never part of the settings draft: the tunnel
+ * belongs to the running console and ends with it. */
+function remoteStore() {
+  if (!state.remote) state.remote = { status: null, loading: false, loaded: false, busy: null, error: null, showLink: false };
+  return state.remote;
+}
+
+/* A button that changes what it says changes in place, so the label swap in
+ * ui.js delivers the new text and the new icon arrives with it. */
+function setButton(button, glyph, text) {
+  if (!button) return;
+  glyph.classList.add('is-arriving');
+  button.replaceChildren(glyph, text);
+}
+
+/* `button` is the control that started the action: it turns into its busy
+ * label right where it is instead of the whole panel being redrawn. */
+async function remoteAction(path, busy, body = {}, button = null, busyText = '') {
+  const store = remoteStore();
+  if (store.busy) return;
+  store.busy = busy;
+  store.error = null;
+  if (button) {
+    button.disabled = true;
+    setButton(button, spinner(), busyText);
+    document.querySelectorAll('#remote-panel button').forEach(other => { other.disabled = true; });
+  }
+  try {
+    store.status = await api(path, { method: 'POST', body });
+    store.loaded = true;
+    if (store.status.error) store.error = store.status.error + (store.status.detail ? ' (' + store.status.detail + ')' : '');
+  } catch (err) {
+    if (err instanceof UnauthorizedError) { handleUnauthorized(); return; }
+    store.error = err.message;
+  } finally {
+    store.busy = null;
+    // The switch already shows its new position: redrawing it would cut its
+    // own motion short. Only an error needs the panel back.
+    if (busy !== 'auto' || store.error) paintRemotePanel();
+    else document.querySelectorAll('#remote-panel button').forEach(other => { other.disabled = false; });
+  }
+}
+
+/* Whether this very page arrived through the tunnel: stopping it then ends the
+ * connection the operator is using. */
+function viaRemote(status) {
+  try { return !!status?.url && new URL(status.url).host === location.host; }
+  catch (_) { return false; }
+}
+
+async function stopRemote() {
+  const status = remoteStore().status;
+  const confirmed = await confirmDialog({
+    title: 'Stop remote access',
+    message: viaRemote(status)
+      ? 'You are using this remote address right now: the page stops working as soon as the tunnel closes. Open the console on the bridge computer to start it again.'
+      : 'The remote address stops working at once. Starting again hands out a new address.',
+    confirmLabel: 'Stop remote access',
+    destructive: true,
+  });
+  if (confirmed) remoteAction(API.remoteStop, 'stop', {}, document.getElementById('remote-stop'), 'Stopping …');
+}
+
+function remotePanel() {
+  const store = remoteStore();
+  const status = store.status;
+  const busy = store.busy;
+  const body = h('div', { class: 'panel-body stack' });
+
+  if (!store.loaded) {
+    body.append(spinnerRow('Checking remote access …'));
+  } else if (status && status.url) {
+    const qr = h('img', { class: 'remote-qr', alt: 'QR code of the remote address', width: '196', height: '196',
+      src: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(status.qr_svg || '') });
+    const linkBtn = h('button', { class: 'btn', type: 'button', id: 'remote-show-link', 'aria-expanded': store.showLink ? 'true' : 'false' },
+      icon(store.showLink ? 'eye-off' : 'eye'), store.showLink ? 'Hide link' : 'Show link');
+    linkBtn.addEventListener('click', () => {
+      store.showLink = !store.showLink;
+      linkBtn.setAttribute('aria-expanded', store.showLink ? 'true' : 'false');
+      setButton(linkBtn, icon(store.showLink ? 'eye-off' : 'eye'), store.showLink ? 'Hide link' : 'Show link');
+      const shown = side.querySelector('.remote-link');
+      if (store.showLink && !shown) side.append(enter(linkBlock()));
+      else if (!store.showLink && shown) leave(shown);
+    });
+    const stop = h('button', { class: 'btn danger', type: 'button', id: 'remote-stop', disabled: !!busy },
+      busy === 'stop' ? spinner() : icon('square'), busy === 'stop' ? 'Stopping …' : 'Stop');
+    stop.addEventListener('click', stopRemote);
+    const side = h('div', { class: 'stack remote-side' },
+      h('p', { class: 'remote-live' }, h('span', { class: 'remote-dot', 'aria-hidden': 'true' }),
+        status.ready ? 'Remote access is on' : 'Remote access is starting …'),
+      h('p', { class: 'hint', text: 'Scan the code with a phone, or open the link on any device. Signing in still needs '
+        + (status.auth_mode === 'password' ? 'your console password.' : 'the access token.') }),
+      h('div', { class: 'row' }, linkBtn, stop));
+    function linkBlock() {
+      return h('div', { class: 'stack remote-link' },
+        copyField(h('input', { class: 'input mono', id: 'remote-url', readonly: true, value: status.url,
+          onfocus: event => event.target.select() }), { label: 'Copy link' }),
+        h('a', { class: 'btn ghost sm', href: status.url, target: '_blank', rel: 'noopener noreferrer' }, icon('external-link'), 'Open'));
+    }
+    if (store.showLink) side.append(linkBlock());
+    body.append(h('div', { class: 'remote-live-grid' }, h('div', { class: 'remote-qr-frame' }, qr), side));
+    if (status.auth_mode !== 'password') {
+      body.append(h('p', { class: 'hint', id: 'remote-token-note', text: 'Tip: with remote access, set your own password in “Console access” below — a phone is easier to sign in with a password than with the 43-character token.' }));
+    }
+  } else if (status && !status.installed) {
+    const install = h('button', { class: 'btn primary', type: 'button', id: 'remote-install', disabled: !!busy },
+      busy === 'install' ? spinner() : icon('download'), busy === 'install' ? 'Downloading …' : 'Install and continue');
+    install.addEventListener('click', async () => {
+      await remoteAction(API.remoteInstall, 'install', {}, install, 'Downloading …');
+      if (remoteStore().status?.installed) remoteAction(API.remoteStart, 'start', {}, document.getElementById('remote-start'), 'Creating address …');
+    });
+    body.append(
+      h('p', { class: 'hint', text: 'Remote access uses cloudflared, Cloudflare’s free tunnel program (about 60 MB, downloaded once from Cloudflare’s official GitHub release into the CWBridge folder).' }),
+      h('div', { class: 'row' }, install));
+  } else {
+    const start = h('button', { class: 'btn primary', type: 'button', id: 'remote-start', disabled: !!busy },
+      busy === 'start' ? spinner() : icon('globe'), busy === 'start' ? 'Creating address …' : 'Enable remote access');
+    start.addEventListener('click', () => remoteAction(API.remoteStart, 'start', {}, start, 'Creating address …'));
+    body.append(
+      h('p', { class: 'hint', text: 'Creates a public https address for this console — no port forwarding, no account. It works while this console runs and gets a new address every time.' }),
+      h('div', { class: 'row' }, start));
+  }
+  if (store.loaded && status) {
+    const row = h('label', { class: 'switch-row', for: 'remote-auto-start' });
+    const box = checkBox({ id: 'remote-auto-start', role: 'switch', disabled: !!busy });
+    box.checked = !!status.auto_start;
+    box.addEventListener('change', async () => {
+      const enabled = box.checked;
+      await remoteAction(API.remoteAutoStart, 'auto', { enabled });
+      const now = remoteStore().status;
+      // Switching it on is also a request for remote access right now.
+      if (enabled && now && now.installed && !now.running) remoteAction(API.remoteStart, 'start', {}, document.getElementById('remote-start'), 'Creating address …');
+    });
+    row.append(box, h('span', { class: 'switch-copy' },
+      h('span', { class: 'switch-name', text: 'Open automatically' }),
+      h('span', { class: 'hint', text: 'Starts remote access every time the web console starts. The address changes with every start; the terminal prints the new one.' })));
+    body.append(row);
+  }
+  if (store.error) body.append(h('p', { class: 'error-text', id: 'remote-error', role: 'alert', text: store.error }));
+  body.append(h('p', { class: 'hint', text: 'Traffic runs through Cloudflare. Anyone with the address sees the sign-in page; only the token or password lets them in.' }));
+
+  return h('div', { class: 'panel', id: 'remote-panel', 'data-mode': remoteMode(store) },
+    h('div', { class: 'panel-head' }, h('h3', { text: 'Remote access' }), h('span', { class: 'grow' }),
+      h('span', { class: 'panel-note', text: 'Cloudflare tunnel' })),
+    body);
+}
+
+function remoteMode(store) {
+  const status = store.status;
+  return !store.loaded ? 'loading' : status?.url ? 'on' : status && !status.installed ? 'install' : 'off';
+}
+
+/* A change of mode (off → on, install → off) brings its new content in; a
+ * repaint that changes nothing visible keeps still. */
+function paintRemotePanel() {
+  if (state.view !== 'app' || state.tab !== 'settings' || state.settingsSection !== 'credentials') return;
+  const panel = document.getElementById('remote-panel');
+  if (!panel) return;
+  const mode = remoteMode(remoteStore());
+  const next = remotePanel();
+  if (panel.dataset.mode !== mode) enter(next.querySelector('.panel-body'));
+  panel.replaceWith(next);
 }
 
 /* Repaint in place: the credentials form above keeps its unsaved edits. */

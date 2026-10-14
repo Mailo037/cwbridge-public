@@ -1,5 +1,5 @@
 /* CWBridge console: auth. Local ES module; no runtime dependencies. */
-import { API, UnauthorizedError, api, authSession, fetchState, newSettingsBackupsState, startPolling, state, stopPolling } from './core.js';
+import { API, UnauthorizedError, api, applyState, authSession, fetchState, newSettingsBackupsState, startPolling, state, stopPolling } from './core.js';
 import { checkBox, copyValue, customSelect, h, icon, installTooltips, spinner, toast } from './ui.js';
 import { snapshotConfig } from './settings-model.js';
 import { newOverviewState, newRobloxState } from './pages/overview.js';
@@ -90,7 +90,8 @@ function clearUrlFragment() {
 async function loginWithToken(token) {
   const data = await api(API.login, { method: 'POST', body: { token } });
   authSession.csrfToken = data.csrf;
-  await fetchState();
+  // The sign-in answer carries the state; an older server's does not.
+  if (data.state) applyState(data.state); else await fetchState();
   state.view = state.config && state.config.setup_complete === false ? 'setup' : 'app';
   render();
   if (state.view === 'app') startPolling();
@@ -335,7 +336,7 @@ async function boot() {
   const autoToken = fragmentToken();
   if (autoToken) clearUrlFragment();
   try {
-    const data = await api(API.session);
+    const data = await api(API.session + '?state=1');
     if (data.auth && data.auth.mode) state.authMode = data.auth.mode;
     if (!data.csrf) {
       // Signed out. The server reports that as a plain state, so no
@@ -344,7 +345,7 @@ async function boot() {
       else state.view = 'login';
     } else {
       authSession.csrfToken = data.csrf;
-      await fetchState();
+      if (data.state) applyState(data.state); else await fetchState();
       if (state.config && state.config.setup_complete === false) state.view = 'setup';
       else state.view = 'app';
     }

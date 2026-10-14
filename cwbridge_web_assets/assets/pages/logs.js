@@ -8,15 +8,26 @@ async function fetchLogs() {
   const selection = state.logSelection;
   state.busy.logs = true;
   state.logError = null;
+  /* A poll of the session already on screen asks only for what was appended
+   * since: the whole log every second is what made a long log slow to follow
+   * over a tunnel. The server answers from offset 0 whenever the log is no
+   * longer simply longer (cleared, replaced), and the text is replaced then. */
+  const known = state.logText !== null && state.logSessionId && Number.isInteger(state.logSize)
+    && (!selection || selection === state.logSessionId) ? state.logSize : null;
+  const query = known !== null ? '?since=' + known : '';
   try {
-    const data = await api(API.logs + (selection ? '/' + encodeURIComponent(selection) : ''), { raw: true });
+    const data = await api(API.logs + (selection ? '/' + encodeURIComponent(selection) : '') + query, { raw: true });
     if (request !== state.logRequest) return;
     state.logSessions = Array.isArray(data.sessions) ? data.sessions : [];
+    const sameSession = data.session_id && data.session_id === state.logSessionId;
+    const appended = known !== null && sameSession && data.offset === known && data.offset > 0;
     state.logSessionId = data.session_id || null;
-    state.logText = data.session_id ? (data.text || '') : '';
+    state.logText = !data.session_id ? '' : appended ? state.logText + (data.text || '') : (data.text || '');
+    state.logSize = Number.isInteger(data.size) ? data.size : null;
   } catch (err) {
     if (request !== state.logRequest) return;
     state.logText = null;
+    state.logSize = null;
     state.logSessionId = null;
     state.logError = err.message;
   } finally {

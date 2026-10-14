@@ -834,6 +834,73 @@ function installLabelSwap() {
 }
 
 /* ------------------------------------------------------------------ *
+ *  Disclosures that open and close                                     *
+ * ------------------------------------------------------------------ */
+/* A <details> snaps open by default: its content is simply there. Every
+ * disclosure in the console instead unfolds to its height and folds back the
+ * same way, read from the document like the label swap, so a <details> written
+ * later behaves the same without asking for it. */
+const DISCLOSURE_MS = 220;
+
+function reducedMotion() {
+  return window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+}
+
+function animateDisclosure(details, opening) {
+  const summary = details.querySelector(':scope > summary');
+  if (!summary || reducedMotion() || !details.animate) {
+    details.open = opening;
+    return;
+  }
+  details.__motion?.cancel();
+  const closed = summary.offsetHeight + 'px';
+  const start = details.offsetHeight + 'px';
+  if (opening) details.open = true;
+  const end = opening ? details.scrollHeight + 'px' : closed;
+  details.style.overflow = 'hidden';
+  details.classList.toggle('is-unfolding', opening);
+  details.classList.toggle('is-folding', !opening);
+  const motion = details.animate({ height: [start, end] }, { duration: DISCLOSURE_MS, easing: 'cubic-bezier(.2,.8,.2,1)' });
+  details.__motion = motion;
+  motion.onfinish = () => {
+    if (!opening) details.open = false;
+    details.__motion = null;
+    details.style.overflow = '';
+    details.classList.remove('is-unfolding', 'is-folding');
+  };
+  motion.oncancel = () => { details.style.overflow = ''; details.classList.remove('is-unfolding', 'is-folding'); };
+}
+
+function installDisclosureMotion() {
+  if (installDisclosureMotion.done) return;
+  installDisclosureMotion.done = true;
+  document.addEventListener('click', event => {
+    const summary = event.target.closest?.('details > summary');
+    if (!summary || event.defaultPrevented) return;
+    const details = summary.parentElement;
+    event.preventDefault();
+    animateDisclosure(details, !details.open || details.classList.contains('is-folding'));
+  });
+}
+
+/* Content that appears inside a panel enters, and leaves before it is removed:
+ * the same lift the select menus use. `leave` resolves once it is gone. */
+function enter(element) {
+  if (!reducedMotion()) element.classList.add('is-entering');
+  element.addEventListener('animationend', () => element.classList.remove('is-entering'), { once: true });
+  return element;
+}
+
+function leave(element) {
+  return new Promise(resolve => {
+    if (reducedMotion() || !element.isConnected) { element.remove(); resolve(); return; }
+    element.classList.remove('is-entering');
+    element.classList.add('is-leaving');
+    setTimeout(() => { element.remove(); resolve(); }, 160);
+  });
+}
+
+/* ------------------------------------------------------------------ *
  *  Sidebar collapse state (persisted per browser profile)              *
  * ------------------------------------------------------------------ */
 const SIDEBAR_COLLAPSED_KEY = 'cwbridge.sidebar.collapsed';
@@ -1394,7 +1461,7 @@ function spinnerRow() {
   return row;
 }
 
-export { actionMenu, checkBox, confirmDialog, copyButton, copyField, copyText, copyValue, customSelect, drawerOpen, emptyState, fmtMB, h, hideTooltip, icon, installHoverPill, installLabelSwap, installTooltips,
+export { actionMenu, animateDisclosure, checkBox, enter, installDisclosureMotion, leave, confirmDialog, copyButton, copyField, copyText, copyValue, customSelect, drawerOpen, emptyState, fmtMB, h, hideTooltip, icon, installHoverPill, installLabelSwap, installTooltips,
   mobileMedia, openDialog, placeTooltip, popInRows, popInText, refreshHoverPill, sectionNav, setDrawerOpen, setPopText, setSidebarCollapsed, sidebarCollapsed, sidebarTooltip, spinner, spinnerRow, streamText, toast };
 
 // Brief action feedback; sustained rotation is reserved for a busy operation.
